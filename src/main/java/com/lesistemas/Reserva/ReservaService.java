@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.lesistemas.Empresa.Empresa;
@@ -29,20 +31,23 @@ public class ReservaService {
 		return reservaRepository.findByDataAndEmpresaOrderByHorario(localDate, emp);
 	}
 
-	public Object cancelarReserva(Long id) {
+	public ResponseEntity<Object> cancelarReserva(Long id) {
 		Reserva reserva = reservaRepository.findById(id).get();
+
+		if(reserva == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reserva não Encontrada!");
+		}
 		reserva.setStatus("CANCELADO");
-		reservaRepository.save(reserva);
-		
-		return "Reserva Cancelada";
+		return ResponseEntity.status(HttpStatus.OK).body(reservaRepository.save(reserva));
 	}
 
-	public Object finalizarReserva(Long id) {
+	public ResponseEntity<Object> finalizarReserva(Long id) {
 		Reserva reserva = reservaRepository.findById(id).get();
-		reserva.setStatus("FECHADO");
-		reservaRepository.save(reserva);
-		
-		return "Reserva Finalizada";
+
+		if(reserva == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Reserva não Encontrada!");
+		}
+			reserva.setStatus("FECHADO");
+			return ResponseEntity.status(HttpStatus.OK).body(reservaRepository.save(reserva));
 	}
-	
 }

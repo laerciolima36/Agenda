@@ -7,12 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReservaController {
@@ -52,13 +47,13 @@ public class ReservaController {
 		}
 	}
 
-	@GetMapping("/reserva/cancelada/{id}")
+	@PutMapping("/reserva/cancelada/{id}")
 	public ResponseEntity<Object> cancelarReserva(@PathVariable(value = "id") Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(reservaService.cancelarReserva(id));
+		return reservaService.cancelarReserva(id);
 	}
 	
-	@GetMapping("/reserva/finalizada/{id}")
+	@PutMapping("/reserva/finalizada/{id}")
 	public ResponseEntity<Object> finalizarReserva(@PathVariable(value = "id") Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(reservaService.finalizarReserva(id));
+		return reservaService.finalizarReserva(id);
 	}
 }

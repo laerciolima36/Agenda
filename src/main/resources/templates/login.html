@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Agenda Aí - Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--    <link rel="icon" type="image/png" href="https://colorlib.com/etc/lf/Login_v2/images/icons/favicon.ico">-->
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/css/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+</head>
+<body>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form th:action="@{/login}" method="post" class="login100-form validate-form">
+                <span class="login100-form-title p-b-26">
+                    <img src="/imagens/logomarca-v1-iconame.png" width="250px" alt="iconame">
+                </span>
+                <span class="login100-form-title p-b-48">Bem Vindo</span>
+                <div th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+                    <div class="wrap-input100 validate-input" data-validate="Digite um email Válido: aa@bb.cc">
+                        <input class="input100" type="text" name="username">
+                        <span class="focus-input100" data-placeholder="Email"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Digite sua Senha">
+                    <span class="btn-show-pass">
+                        <i class="zmdi zmdi-eye"></i>
+                    </span>
+                        <input class="input100" type="password" name="password">
+                        <span class="focus-input100" data-placeholder="Senha"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button type="submit" class="login100-form-btn">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                <div class="text-center p-t-115">
+<span class="txt1">
+Não Possui Cadastro?
+</span>
+                    <a class="txt2" href="/cadastrar">
+                        Cadastre-se
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="dropDownSelect1"></div>
+
+<script src="/js/jquery-3.2.1.min.js"></script>
+
+<script src="/js/animsition.min.js"></script>
+
+<script src="/js/popper.js"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script src="/js/select2.min.js"></script>
+
+<script src="/js/moment.min.js"></script>
+<script src="/js/daterangepicker.js"></script>
+
+<script src="/js/countdowntime.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>

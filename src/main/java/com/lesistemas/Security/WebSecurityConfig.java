@@ -23,15 +23,13 @@ public class WebSecurityConfig {
 		
 		http
 			.authorizeHttpRequests()
-			.requestMatchers("/imagens/**", "/get/**", "/js/**", "/post/**" ,"/webjars/**", "/index/**", "/cadastrar/**", "/painel/js/**", "/painel/css/**", "/app/**", "/index/css/**").permitAll()
+			.requestMatchers("/imagens/**", "/resources/**", "/get/**", "/js/**", "/post/**" ,"/webjars/**", "/index/**", "/cadastrar/**", "/painel/js/**", "/painel/css/**", "/app/**", "/index/css/**", "/login3", "/css/**", "/fonts/**").permitAll()
 			.and()
 			.authorizeHttpRequests()
 			.anyRequest()
 			.authenticated()
 			.and()
-			.formLogin()
-			.permitAll()
-			.and()
+			.formLogin(form -> form.loginPage("/login").permitAll())
 			.httpBasic()
 			.and()
 			.logout()

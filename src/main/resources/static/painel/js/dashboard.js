@@ -1,5 +1,6 @@
 import { displayLoading } from "./api.js";
 import { hideLoading } from "./api.js";
+import { fetchPut } from "./api.js";
 import { dadosempresa } from "./empresa.js";
 
 let div_main = $(".main");
@@ -180,18 +181,17 @@ function mostrarReservaCancelada(reserva) {
 
 function reservaFoiCancela(idReserva) { //revisar metodo
 	let url = "/reserva/cancelada/" + idReserva;
-	//apiGet(url, auxiliar);
-	buscarReservas(dataEscolhida, dadosempresa.id_empresa, mostrarFinalizadas);
+	fetchPut(url, auxiliar, null);
 }
 
 function reservaFoiFinaliza(idReserva) { //revisar metodo
 	let url = "/reserva/finalizada/" + idReserva;
-	//apiGet(url, auxiliar);
-	buscarReservas(dataEscolhida, dadosempresa.id_empresa, mostrarFinalizadas);
+	fetchPut(url, auxiliar, null);
 }
 
 function auxiliar(result){
-	console.log(result);
+    console.log(auxiliar);
+	buscarReservas(dataEscolhida, dadosempresa.id_empresa, mostrarFinalizadas);
 }
 
 
