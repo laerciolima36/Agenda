@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}" type="text/css" />
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script type="text/javascript" th:src="@{js/jquery.mask.js}"></script>
+	<script type="module" th:src="@{js/cadastrar.js}"></script>
+
+	<title>Faça o seu cadastro</title>
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg bg-primary bg-gradient">
+		<div class="container-fluid justify-content-center d-flex">
+
+			<div class="navbar-brand text-white text-center ">
+				<span class="navbar-logo">
+					<img src="/imagens/logomarca-v1-iconame.png" height="50px"></img>
+			</div>
+
+		</div>
+	</nav>
+
+	<br>
+
+	<div class="container">
+
+		<h5>Preencha os Dados da sua Empresa</h5>
+
+		<form th:action="@{/cadastrar}" method="post">
+			<div class="card">
+				<div class="card-header">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					Dados da sua Empresa
+				</div>
+				<div class="card-body">
+					<div class="mb-3">
+						<label class="form-label" th:for="nome"><i class="fa-solid fa-building"></i> Nome da
+							Empresa:</label>
+						<input type="text" class="form-control" th:field="*{empresa.nome}" required="required">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="contato"><i class="fa-solid fa-phone"></i> Contato: (DD)
+							90000-0000</label>
+						<input type="text" class="form-control contato" th:field="*{empresa.contato}"
+							required="required">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="endereco.logradouro"><i class="fa-solid fa-location-dot"></i>
+							Endereço: (Ex.: Rua, Av, etc)</label>
+						<input type="text" class="form-control" th:field="*{endereco.logradouro}" placeholder="Endereço"
+							required="required">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="endereco.bairro"><i class="fa-solid fa-location-dot"></i>
+							Bairro:</label>
+						<input type="text" class="form-control" th:field="*{endereco.bairro}" placeholder="Bairro"
+							required="required">
+					</div>
+
+					<div class="mb-3 col-4">
+						<label class="form-label" th:for="endereco.numero"><i class="fa-solid fa-location-dot"></i>
+							Numero:</label>
+						<input type="number" class="form-control" th:field="*{endereco.numero}" placeholder="Número"
+							required="required">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="endereco.cidade"><i class="fa-solid fa-location-dot"></i>
+							Cidade:</label>
+						<input type="text" class="form-control" th:field="*{endereco.cidade}" placeholder="Cidade"
+							required="required">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="endereco.cep"><i class="fa-solid fa-location-dot"></i>
+							CEP:</label>
+						<input type="number" class="form-control" th:field="*{endereco.cep}" placeholder="CEP"
+							required="required">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="endereco.uf"><i class="fa-solid fa-location-dot"></i>
+							UF:</label>
+						<input type="text" class="form-control" th:field="*{endereco.uf}" placeholder="UF"
+							required="required">
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="link"><i class="fab fa-instagram"></i> Instagram: (Insira seu
+							Instagram sem o sinal de @)</label>
+						<input type="text" class="form-control" th:field="*{empresa.redesocial}">
+					</div>
+
+					<div class="mb-3">
+						<label for="link" class="form-label" th:for="link"><i class="fa-solid fa-link"></i> Link para
+							sua
+							Empresa:</label>
+						<div class="d-flex align-items-top">
+							<div class="col-auto">
+								<span>https://agendaai.com/app/</span>
+							</div>
+							<div class="col">
+								<input type="text" class="form-control" id="link" th:field="*{empresa.link}"
+									placeholder="seulink" required>
+								<div class="valid-feedback">
+									Link Disponivel!
+								</div>
+								<div class="invalid-feedback">
+									Link Indisponivel!
+								</div>
+							</div>
+						</div>
+
+						<div class="spinner-border spinner-border-sm visually-hidden" id="load1" role="status">
+						</div>
+						<div>
+							<span style="font-size: 11px;">Esse será o link para divulgar para seus clientes! Não utilize espaços!</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<h5>Preencha os Dados de Login</h5>
+			<div class="card">
+				<div class="card-header">
+					<i class="fa-solid fa-user"></i>
+					Dados de Login
+				</div>
+				<div class="card-body">
+					<div class="mb-3">
+						<label class="form-label" th:for="nomecompleto">Nome Completo:</label>
+						<input type="text" class="form-control" th:field="*{usuario.nomecompleto}" required="required">
+					</div>
+
+					<div class="mb-3">
+						<label th:for="username" class="form-label" for="username">Email: (Esse email será utilizado
+							para efetuar login
+							no sistema.)</label>
+						<input type="email" class="form-control" id="username" th:field="*{usuario.username}"
+							placeholder="email@email.com" required>
+						<div class="valid-feedback">
+							Email Disponivel!
+						</div>
+						<div class="invalid-feedback">
+							Email Indisponivel!
+						</div>
+						<div class="spinner-border spinner-border-sm visually-hidden" id="load2" role="status">
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" th:for="password">Senha:</label>
+						<input type="password" class="form-control" th:field="*{usuario.password}" required="required">
+					</div>
+
+					<div>
+						<button class="btn btn-primary" type="submit">Cadastrar</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		<br>
+	</div>
+
+	<script>
+		$('.contato').mask('(99) 99999-9999');
+	</script>
+</body>
+
+</html>

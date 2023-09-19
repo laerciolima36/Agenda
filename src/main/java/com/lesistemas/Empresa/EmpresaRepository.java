@@ -1,0 +1,14 @@
+package com.lesistemas.Empresa;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
+	
+	Empresa findByLink(String link);
+	
+	@Query(value = "SELECT * FROM empresas where id = ?1", nativeQuery = true)
+	Empresa findByIdUsuario(Long id);
+	
+}

@@ -1,0 +1,86 @@
+#picture__inputlogo, #picture__input1, #picture__input2, #picture__input3, #picture__input4, #picture__inputfuncionario, #picture__inputservico, .inputF{
+  display: none;
+}
+
+.picture {
+  aspect-ratio: 16/9;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 2px dashed currentcolor;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: color 300ms ease-in-out, background 300ms ease-in-out;
+  outline: none;
+  overflow: hidden;
+}
+
+.picture:hover {
+  color: #777;
+  background: #ccc;
+}
+
+.picture:active {
+  border-color: turquoise;
+  color: turquoise;
+  background: #eee;
+}
+
+.picture:focus {
+  color: #777;
+  background: #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.picture__img {
+  max-width: 100%;
+}
+
+
+
+
+
+.pictureFuncionario {
+  aspect-ratio: 9/16;
+  background: #ddd;
+  /*display: flex;*/
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 2px dashed currentcolor;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: color 300ms ease-in-out, background 300ms ease-in-out;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  max-width: 30%;
+}
+
+.pictureimgfuncionario {
+	max-height: 100%;
+}
+
+.pictureServico {
+  width: 150px;
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  background: #ddd;
+  /*display: flex;*/
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 2px dashed currentcolor;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: color 300ms ease-in-out, background 300ms ease-in-out;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+}
+
+.pictureimgservico {
+	max-height: 100%;
+}

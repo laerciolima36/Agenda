@@ -1,0 +1,35 @@
+/* creating css loader */
+#cloading {
+    width: 100vw;
+    height: 100vh;
+    background: #6C7A89;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+    
+    
+#loading {
+    width: 3rem;
+    height: 3rem;
+    border: 5px solid #f3f3f3;
+    border-top: 6px solid #9c41f2;
+    border-radius: 100%;
+    margin: auto;
+    visibility: visible;
+    animation: spin 1s infinite linear;
+}
+
+#cloading.display {
+	display: flex;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+
+	<title>Minha Agenda</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
+	<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}" type="text/css" />
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="module" src="../static/js/empresa_from_cliente.js" th:src="@{js/empresa_from_cliente.js}"></script>
+<!--	<script type="text/javascript" src="/webjars/jquery/dist/jquery.min.js"></script>-->
+	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.mask.js" th:src="@{js/jquery.mask.js}"></script>
+
+</head>
+
+<body>
+
+	<section class="section-1"></section>
+	
+	<section class="section-2"></section>
+
+	<section class="section-3"></section>
+	
+	<section class="resumoReserva"></section>
+
+	<script th:inline="javascript">
+		let empresa = /*[[${empresa}]]*/ "Teste";
+	</script>
+
+</body>
+</html>
