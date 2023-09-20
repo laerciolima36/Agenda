@@ -1,6 +1,7 @@
 import { limpaSections } from "./empresa_from_cliente.js";
 import { resumoReserva } from "./empresa_from_cliente.js";
 import { carregarEtapa1 } from "./etapa1.js";
+import { exibirCabecalho } from "./etapa1.js";
 import { carregarEtapa2 } from "./etapa2.js";
 import { carregarEtapa4 } from "./etapa4.js";
 import { fetchGet } from "../../painel/js/api.js";
@@ -19,21 +20,18 @@ export function carregarEtapa3(FuncionarioSelecionado) {
 	exibirsection2(FuncionarioSelecionado);
 	exibirsection3();
 	consultarHorasDisponiveis(dataAtual, FuncionarioSelecionado[0].id_funcionario);
-	
+	atualizaResumo();
+}
+
+function atualizaResumo(){
+    resumoReserva.data = dataAtual;
+    resumoReserva.hora = "Selecione...";
+    resumoReserva.exibirResumo();
 }
 
 function exibirsection1(FuncionarioSelecionado) {
 
-	section1.append(
-		'<div class="container-fluid bg-dark text-light pt-4 ps-4">' +
-		'<i class="fa-solid fa-circle-left fa-xl btn-voltar"></i>' +
-		'</div>' +
-		'<div class="container-fluid bg-dark text-light text-center pt-4">' +
-		'<figure class="figure">' +
-		'<img src="' + logo + '" class="figure-img img-fluid rounded img-thumbnail" alt="..." style="max-width: 40%;">' +
-		'<figcaption class="figure-caption"><span>' + empresa.nome + '</span></figcaption>' +
-		'</figure>' +
-		'</div>');
+	section1.append(exibirCabecalho());
 
 	$('.btn-voltar').on("click", function() {
 		carregarEtapa2(FuncionarioSelecionado);
@@ -131,7 +129,7 @@ function exibirsection2(FuncionarioSelecionado) {
 	});
 
 	$('.btn-continuar').on("click", function() {
-		if (resumoReserva.id_hora == undefined) {
+		if (resumoReserva.id_hora == undefined || resumoReserva.hora == "Selecione...") {
 			alert("Por favor selecione um horário antes de continuar!");
 		} else {
 			carregarEtapa4(FuncionarioSelecionado);

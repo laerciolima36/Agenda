@@ -57,7 +57,9 @@ export class DadosReserva{
 	exibirResumo(){
 		
 		divResumo.empty();
-		divResumo.append('<div class="card text-center">'+
+		divResumo.append(
+		        '<div class="container-fluid justify-content-center text-center">' +
+		        '<div class="card text-center">'+
 				'<div class="card-header">'+
 				'	Resumo do seu Agendamento'+
 				'</div>'+
@@ -67,11 +69,21 @@ export class DadosReserva{
 				'	<p class="card-text">Data e Hora: <strong>'+this.data+' às '+this.hora+'</strong></p>'+
 				'	<p class="card-text">Valor: <strong>R$ '+this.valor+'</strong></p>'+
 				'</div>'+
-			'</div>');
+				'</div>'+
+			'</div><br>');
 	}
 	
 	removerResumo(){
 		divResumo.empty();
+		this.funcionario = "Selecione...";
+        this.servico = "Selecione...";
+        this.data = "Selecione...";
+        this.hora = "Selecione...";
+        this.valor = "R$";
 	}
+
+	removerDiv(){
+    		divResumo.empty();
+    }
 
 }

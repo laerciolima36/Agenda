@@ -2,6 +2,7 @@ import { fetchPost } from "../../painel/js/api.js";
 import { limpaSections } from "./empresa_from_cliente.js";
 import { resumoReserva } from "./empresa_from_cliente.js";
 import { carregarEtapa3 } from "./etapa3.js";
+import { exibirCabecalho } from "./etapa1.js";
 import { section1 } from "./empresa_from_cliente.js";
 import { section2 } from "./empresa_from_cliente.js";
 import { section3 } from "./empresa_from_cliente.js";
@@ -13,21 +14,12 @@ export function carregarEtapa4(FuncionarioSelecionado) {
 	exibirsection1(FuncionarioSelecionado);
 	exibirsection2();
 	exibirsection3();
-	resumoReserva.removerResumo();
+	resumoReserva.removerDiv();
 }
 
 function exibirsection1(FuncionarioSelecionado) {
 
-	section1.append(
-		'<div class="container-fluid bg-dark text-light pt-4 ps-4">' +
-		'<i class="fa-solid fa-circle-left fa-xl btn-voltar"></i>' +
-		'</div>' +
-		'<div class="container-fluid bg-dark text-light text-center pt-4">' +
-		'<figure class="figure">' +
-		'<img src="' + logo + '" class="figure-img img-fluid rounded img-thumbnail" alt="..." style="max-width: 40%;">' +
-		'<figcaption class="figure-caption"><span class="nomeEmpresa">' + empresa.nome + '</span></figcaption>' +
-		'</figure>' +
-		'</div>');
+	section1.append(exibirCabecalho());
 
 	$('.btn-voltar').on("click", function() {
 		carregarEtapa3(FuncionarioSelecionado);
@@ -55,7 +47,6 @@ function exibirsection2() {
 		'<span class="input-group-text" id="inputGroup-sizing-default">Whatsapp:</span>' +
 		'<input type="text" class="form-control inputZap" aria-label="Sizing example input"' +
 		'	aria-describedby="inputGroup-sizing-default">' +
-		'<span>Te avisaremos 20min antes...</span>'+
 		'</div>' +
 		'<br>' +
 		'<a href="#" class="btn btn-finalizar btn-success">Finalizar Reserva</a>' +
@@ -122,7 +113,7 @@ function exibirsection3() {
 
 function ReservaSucesso(response){
 	console.log(response);
-	
+	$('.btn-voltar').addClass("visually-hidden");
 	let nomeCliente = $('.inputNome').val();
 	
 	section2.empty();
@@ -135,7 +126,7 @@ function ReservaSucesso(response){
 		'	Resumo do seu Agendamento' +
 		'</div>' +
 		'<div class="card-body">' +
-		'	<h5 class="card-title">Obrigado '+nomeCliente+' pela sua reserva!</h5>' +
+		'	<h5 class="card-title">Obrigado(a) '+nomeCliente+' pela sua reserva!</h5>' +
 		'	<p class="card-text">Você será atendido por: <strong>' + resumoReserva.funcionario + '</strong></p>' +
 		'	<p class="card-text">Serviço: <strong>' + resumoReserva.servico + '</strong></p>' +
 		'	<p class="card-text">Data e Hora: <strong>' + resumoReserva.data + ' às ' + resumoReserva.hora + '</strong></p>' +

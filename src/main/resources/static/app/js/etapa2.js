@@ -1,6 +1,7 @@
 import { limpaSections } from "./empresa_from_cliente.js";
 import { resumoReserva } from "./empresa_from_cliente.js";
 import { carregarEtapa1 } from "./etapa1.js";
+import { exibirCabecalho } from "./etapa1.js";
 import { carregarEtapa3 } from "./etapa3.js";
 import { section1 } from "./empresa_from_cliente.js";
 import { section2 } from "./empresa_from_cliente.js";
@@ -14,21 +15,19 @@ export function carregarEtapa2(FuncionarioSelecionado) {
 	exibirsection1();
 	exibirsection2(FuncionarioSelecionado);
 	exibirsection3();
-	resumoReserva.data = dataAtual;
+	atualizaResumo();
+}
+
+function atualizaResumo(){
+    resumoReserva.data = dataAtual;
+    resumoReserva.valor = "";
+    resumoReserva.servico = "Selecione...";
+    resumoReserva.exibirResumo();
 }
 
 function exibirsection1() {
 
-	section1.append(
-		'<div class="container-fluid bg-dark text-light pt-4 ps-4">' +
-		'<i class="fa-solid fa-circle-left fa-xl btn-voltar"></i>' +
-		'</div>' +
-		'<div class="container-fluid bg-dark text-light text-center pt-4">' +
-		'<figure class="figure">' +
-		'<img src="' + logo + '" class="figure-img img-fluid rounded img-thumbnail" alt="..." style="max-width: 40%;">' +
-		'<figcaption class="figure-caption"><span>' + empresa.nome + '</span></figcaption>' +
-		'</figure>' +
-		'</div>');
+	section1.append(exibirCabecalho());
 
 
 	$('.btn-voltar').on("click", function() {
