@@ -33,8 +33,7 @@ export function fetchDel(url, metodo) {
 }
 
 export function fetchPost(url, metodo, dados) {
-
-	console.log(JSON.stringify(dados))
+    displayLoading();
 
 	fetch(url, {
 		method: "POST",
@@ -43,7 +42,10 @@ export function fetchPost(url, metodo, dados) {
 
 	})
 		.then(response => response.json())
-		.then(response => metodo(response))
+		.then(response => {
+        	hideLoading()
+        	metodo(response)
+        })
 		.catch(erro => console.log("Erro na solicitação POST " + erro));
 }
 

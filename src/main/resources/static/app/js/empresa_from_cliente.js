@@ -1,4 +1,4 @@
-import { apiGet } from "../../painel/js/api.js";
+import { fetchGet } from "../../painel/js/api.js";
 import { carregarEtapa1 } from "./etapa1.js";
 import { DadosReserva } from "./DadosReserva.js";
 
@@ -64,7 +64,7 @@ function exibirSection2() {
 
 function exibirServicos() {
 	let url = "/get/servicos/empresa/" + empresa.id_empresa;
-	apiGet(url, htmlMostraServicos);
+	fetchGet(url, htmlMostraServicos);
 }
 
 function htmlMostraServicos(servicos) {

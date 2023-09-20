@@ -2,7 +2,7 @@ import { limpaSections } from "./empresa_from_cliente.js";
 import { resumoReserva } from "./empresa_from_cliente.js";
 import { carregarEtapa2 } from "./etapa2.js";
 import { carregarEtapa4 } from "./etapa4.js";
-import { apiGet } from "../../painel/js/api.js";
+import { fetchGet } from "../../painel/js/api.js";
 import { section1 } from "./empresa_from_cliente.js";
 import { section2 } from "./empresa_from_cliente.js";
 import { section3 } from "./empresa_from_cliente.js";
@@ -157,7 +157,7 @@ function exibirsection3() {
 
 function consultarHorasDisponiveis(dataSelecionada, id_funcionario) {
 	let url = "/get/reserva?data=" + dataSelecionada + "&id=" + id_funcionario;
-	apiGet(url, mostrarHorasDisponiveis);
+	fetchGet(url, mostrarHorasDisponiveis);
 }
 
 function mostrarHorasDisponiveis(reservas) {

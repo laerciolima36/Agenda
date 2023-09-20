@@ -3,6 +3,7 @@ import { logo } from "./empresa_from_cliente.js";
 import { limpaSections } from "./empresa_from_cliente.js";
 import { resumoReserva } from "./empresa_from_cliente.js";
 import { apiGet } from "../../painel/js/api.js";
+import { fetchGet } from "../../painel/js/api.js";
 import { carregarEtapa2 } from "./etapa2.js";
 import { section1 } from "./empresa_from_cliente.js";
 import { section2 } from "./empresa_from_cliente.js";
@@ -44,7 +45,7 @@ function exibirsection2() {
 
 function exibirFuncionarios() {
 	let url = "/get/funcionarios/empresa/" + empresa.id_empresa;
-	apiGet(url, htmlMostraFuncionarios);
+	fetchGet(url, htmlMostraFuncionarios);
 }
 
 function htmlMostraFuncionarios(funcionarios) {
@@ -95,7 +96,7 @@ function htmlMostraFuncionarios(funcionarios) {
 		}else{
 			urlImagemFuncionario = funcionario.img.url;
 		}
-		
+
 		listFuncionarios.append(
 			'<li class="list-group-item btn-funcionario list-group-item-action d-flex justify-content-between" aria-current="true" id="'+funcionario.id_funcionario+'">' + //active usar como class para ativar campo
 			'					<div class="d-flex justify-content-start align-items-center"><img' +
@@ -106,18 +107,18 @@ function htmlMostraFuncionarios(funcionarios) {
 			'					<div class="d-flex align-items-center"><i class="fa-solid fa-arrow-right"></i></div>' +
 			'				</li>');
 	}
-	
+
 	$('.btn-funcionario').on("click", function() {
 		var FuncionarioSelecionado = funcionarios.filter(funcionarios => funcionarios.id_funcionario == this.id);
 
 
 		//-------------------------------------------------------------------
-		resumoReserva.id_funcionario = this.id;		
+		resumoReserva.id_funcionario = this.id;
 		resumoReserva.funcionario = FuncionarioSelecionado[0].nome;
 		resumoReserva.exibirResumo();
 		//-------------------------------------------------------------------
-		
-		
+
+
 		carregarEtapa2(FuncionarioSelecionado);
 	});
 }
