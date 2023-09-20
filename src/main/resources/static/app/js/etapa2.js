@@ -52,7 +52,7 @@ function exibirsection2(FuncionarioSelecionado) {
 		'</div>' +
 		'<button type="button"' +
 		'	class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"' +
-		'	style="width: 2rem; height:2rem;">1</button>' +
+		'	style="width: 2rem; height:2rem;" id="btn1">1</button>' +
 		'<button type="button"' +
 		'	class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"' +
 		'	style="width: 2rem; height:2rem;">2</button>' +
@@ -72,6 +72,10 @@ function exibirsection2(FuncionarioSelecionado) {
 		'<br>' +
 
 		'</div>');
+
+    $('#btn1').on("click", function() {
+		carregarEtapa1();
+	});
 
 	let listServicos = $(".listServicos");
 	listServicos.empty();

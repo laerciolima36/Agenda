@@ -1,5 +1,6 @@
 import { limpaSections } from "./empresa_from_cliente.js";
 import { resumoReserva } from "./empresa_from_cliente.js";
+import { carregarEtapa1 } from "./etapa1.js";
 import { carregarEtapa2 } from "./etapa2.js";
 import { carregarEtapa4 } from "./etapa4.js";
 import { fetchGet } from "../../painel/js/api.js";
@@ -55,10 +56,10 @@ function exibirsection2(FuncionarioSelecionado) {
 		'					</div>' +
 		'					<button type="button"' +
 		'						class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"' +
-		'						style="width: 2rem; height:2rem;">1</button>' +
+		'						style="width: 2rem; height:2rem;" id="btn1">1</button>' +
 		'					<button type="button"' +
 		'						class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"' +
-		'						style="width: 2rem; height:2rem;">2</button>' +
+		'						style="width: 2rem; height:2rem;" id="btn2">2</button>' +
 		'					<button type="button"' +
 		'						class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-primary rounded-pill"' +
 		'						style="width: 2rem; height:2rem;">3</button>' +
@@ -90,6 +91,14 @@ function exibirsection2(FuncionarioSelecionado) {
 
 
 		'		</div>');
+
+    $('#btn2').on("click", function() {
+    	carregarEtapa2(FuncionarioSelecionado);
+    });
+
+    $('#btn1').on("click", function() {
+    	carregarEtapa1();
+    });
 
 	let listHoras = $(".listHoras");
 	listHoras.empty();
