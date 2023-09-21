@@ -7,7 +7,7 @@ import { exibirAgenda } from "./agenda.js";
 import { exibirFinanceiro } from "./financeiro.js";
 import { exibirDashboard } from "./dashboard.js";
 import { limparDivReserva } from "./dashboard.js";
-
+import { getsuporte } from "./suporte.js";
 
 $(document).ready(function() {
 
@@ -16,6 +16,11 @@ $(document).ready(function() {
 	$('.a-dashboard').on("click", function() {
 		exibirDashboard();
 	})
+
+	$('.a-agenda').on("click", function() {
+    	exibirAgenda();
+    	limparDivReserva();
+    })
 
 	$('.a-empresa').on("click", function() {
 		exibirEmpresa();
@@ -37,15 +42,14 @@ $(document).ready(function() {
 		limparDivReserva();
 	})
 
-	$('.a-agenda').on("click", function() {
-		exibirAgenda();
-		limparDivReserva();
-	})
-
 	$('.a-financeiro').on("click", function() {
 		exibirFinanceiro();
 		limparDivReserva();
 	})
+
+	$('.a-suporte').on("click", function() {
+    	getsuporte();
+    })
 	
 	$('.a-logout').on("click", function() {
 		window.location.href = '/logout';

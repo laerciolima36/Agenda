@@ -13,7 +13,7 @@ import com.lesistemas.Endereco.Endereco;
 import com.lesistemas.Endereco.EnderecoService;
 import com.lesistemas.Usuario.Usuario;
 import com.lesistemas.Usuario.UsuarioService;
-import com.lesistemas.utils.Role;
+import com.lesistemas.Usuario.Role;
 
 @Service
 public class CadastroService {

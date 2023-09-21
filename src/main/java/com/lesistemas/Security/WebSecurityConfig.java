@@ -23,7 +23,7 @@ public class WebSecurityConfig {
 		
 		http
 			.authorizeHttpRequests()
-			.requestMatchers("/imagens/**", "/resources/**", "/get/**", "/js/**", "/post/**" ,"/webjars/**", "/index/**", "/cadastrar/**", "/painel/js/**", "/painel/css/**", "/app/**", "/index/css/**", "/login3", "/css/**", "/fonts/**").permitAll()
+			.requestMatchers("/imagens/**", "/resources/**", "/get/**", "/js/**", "/post/**" ,"/webjars/**", "/index/**", "/cadastrar/**", "/painel/js/**", "/painel/css/**", "/app/**", "/index/css/**", "/login3", "/css/**", "/fonts/**", "/suporte").permitAll()
 			.and()
 			.authorizeHttpRequests()
 			.anyRequest()

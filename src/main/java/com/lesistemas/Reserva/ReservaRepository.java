@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.lesistemas.Empresa.Empresa;
 import com.lesistemas.Funcionario.Funcionario;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long>{
 	
 	List<Reserva> findByDataAndFuncionario(LocalDate data, Funcionario funcionario);

@@ -2,275 +2,272 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
-	<title>Minha Agenda</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Minha Agenda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
-	<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}" type="text/css" />
-	<link rel="stylesheet" th:href="@{css/loader.css}" type="text/css" />
-	<link rel="stylesheet" th:href="@{css/picture.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{css/loader.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{css/picture.css}" type="text/css"/>
 
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
-	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
-	<script type="text/javascript" src="../static/js/jquery.mask.js" th:src="@{js/jquery.mask.js}"></script>
-	<script type="module" src="../static/js/painel.js" th:src="@{js/painel.js}"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css"/>
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.mask.js" th:src="@{js/jquery.mask.js}"></script>
+    <script type="module" src="../static/js/painel.js" th:src="@{js/painel.js}"></script>
 </head>
 
 <body>
-	<nav class="navbar navbar-dark bg-dark fixed-top">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img
-					src="/imagens/logomarca-v1-iconame.png" alt="iconame"
-					width="150"></a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-				data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-				aria-labelledby="offcanvasDarkNavbarLabel">
-				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><img
-							src="/imagens/logomarca-v1-iconame.png" alt="iconame"
-							width="100"> Menu</h5>
-					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-						aria-label="Close"></button>
-				</div>
-				<div class="offcanvas-body" style="z-index: 999999;">
-					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img
+                src="/imagens/logomarca-v1-iconame.png" alt="iconame"
+                width="150"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+             aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" style="z-index: 999999;">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-						<li class="nav-item">
-							<a class="nav-link a-dashboard text-white" aria-current="page" href="#"
-								data-bs-dismiss="offcanvas">Dashborad</a>
-						</li>
+                    <li class="nav-item">
+                        <a class="nav-link a-dashboard text-white" aria-current="page" href="#"
+                           data-bs-dismiss="offcanvas">Dashborad</a>
+                    </li>
 
-						<li class="nav-item">
-							<a class="nav-link a-agenda text-white" aria-current="page" href="#"
-								data-bs-dismiss="offcanvas">Minha Agenda</a>
-						</li>
+                    <li class="nav-item">
+                        <a class="nav-link a-agenda text-white" aria-current="page" href="#"
+                           data-bs-dismiss="offcanvas">Minha Agenda</a>
+                    </li>
 
-						<li class="nav-item">
-							<a class="nav-link a-empresa text-white" href="#" data-bs-dismiss="offcanvas">Empresa</a>
-						</li>
+                    <li class="nav-item">
+                        <a class="nav-link a-empresa text-white" href="#" data-bs-dismiss="offcanvas">Empresa</a>
+                    </li>
 
-						<li class="nav-item">
-							<a class="nav-link a-servicos text-white" href="#" data-bs-dismiss="offcanvas">Serviços</a>
-						</li>
+                    <li class="nav-item">
+                        <a class="nav-link a-servicos text-white" href="#" data-bs-dismiss="offcanvas">Serviços</a>
+                    </li>
 
-						<li class="nav-item">
-							<a class="nav-link a-horarios text-white" href="#" data-bs-dismiss="offcanvas">Horários</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link a-funcionarios text-white" href="#"
-								data-bs-dismiss="offcanvas">Funcionários</a>
-						</li>
+                    <li class="nav-item">
+                        <a class="nav-link a-horarios text-white" href="#" data-bs-dismiss="offcanvas">Horários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link a-funcionarios text-white" href="#"
+                           data-bs-dismiss="offcanvas">Funcionários</a>
+                    </li>
 
-						<li class="nav-item">
-							<a class="nav-link a-financeiro text-white" href="#"
-								data-bs-dismiss="offcanvas">Financeiro</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link a-suporte text-white" href="#" data-bs-dismiss="offcanvas">Falar com
-								Suporte</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link a-logout text-white" href="#" data-bs-dismiss="offcanvas">Sair</a>
-						</li>
+                    <li class="nav-item">
+                        <a class="nav-link a-financeiro text-white" href="#"
+                           data-bs-dismiss="offcanvas">Financeiro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link a-suporte text-white" href="#" data-bs-dismiss="offcanvas">Falar com
+                            Suporte <img src="/imagens/zap.png" width="15px" alt="logozap"> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link a-logout text-white" href="#" data-bs-dismiss="offcanvas">Sair</a>
+                    </li>
 
-					</ul>
-					<form class="d-flex mt-3" role="search">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-success" type="submit">Search</button><br>
-					</form>
-					<span class="navbar-text text-end" sec:authentication="name">
+                </ul>
+                <br><br>
+                <span class="navbar-text text-end">Usuário: </span>
+                <span class="navbar-text text-end" sec:authentication="name">
 						<div sec:authorize="isAuthenticated()" class="user">
 						</div>
 					</span>
-				</div>
-			</div>
-		</div>
-	</nav>
+            </div>
+        </div>
+    </div>
+</nav>
 
 
-	<br><br>
-	<div id="cloading">
-		<div id="loading"></div>
-	</div>
-	<br>
-	<div class="container main">
-	</div>
+<br><br>
+<div id="cloading">
+    <div id="loading"></div>
+</div>
+<br>
+<div class="container main">
+</div>
 
-	<div class="container reservas">
-	</div>
-	
-	<div class="tarefas"></div>
+<div class="container reservas">
+</div>
 
-
-	<!-- Delete Modal -->
-	<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Atenção!</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<span>Deseja Realmente Excluir esse </span><span class="delspan"></span>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-					<button type="button" class="btn btn-primary magic" data-bs-dismiss="modal">Sim</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal Novo Serviço-->
-	<div class="modal fade" id="ModalNovoServico" tabindex="-1" data-bs-backdrop="static"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Novo Serviço</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="col-auto">
-						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" class="form-control newServicoNome" name="nome">
-					</div>
-					<br>
-					<div class="col-auto">
-						<label for="preco" class="form-label">Valor do Serviço R$</label>
-						<input type="text" id="preco" class="form-control newServicoPreco dinheiro" placeholder="0,00">
-					</div>
-					<br>
-					<div class="col-auto">
-						<label for="descricao" class="form-label">Descrição do Serviço</label>
-						<input type="text" id="descricao" class="form-control newServicoDescricao"
-							placeholder="Resuma este serviço para seus clientes...">
-					</div>
-					<br>
-					<div class="col-auto">
-						<label for="descricao" class="form-label">Tempo estimado (Ex.: 30min -> 00:30)</label>
-						<input type="time" id="tempo_servico" class="form-control newTempoServico">
-					</div>
-					<br>
-					<div class="mb-3">
-						<label for="formFile" class="form-label">Imagem do Serviço</label>
-						<input class="form-control newServicoFoto" type="file" id="formFile">
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary addservico" data-bs-dismiss="modal">Salvar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal Novo Horário-->
-	<div class="modal fade" id="ModalNovoHorario" tabindex="-1" data-bs-backdrop="static"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Novo Horário</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="col-auto">
-						<label for="hora" class="form-label">Hora (Ex.: 30min -> 00:30)</label>
-						<input type="time" id="hora" class="form-control newHora">
-					</div>
-					<br>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary addhorario" data-bs-dismiss="modal">Salvar</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="tarefas"></div>
 
 
-	<!-- Modal Novo Funcionário-->
-	<div class="modal fade" id="ModalFuncionario" tabindex="-1" data-bs-backdrop="static"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5 titleFuncionario" id="exampleModalLabel"></h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
+<!-- Delete Modal -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Atenção!</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span>Deseja Realmente Excluir esse </span><span class="delspan"></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary magic" data-bs-dismiss="modal">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-					<div class="col-auto">
-						<label for="nome" class="form-label">Nome</label>
-						<input type="text" id="nome" class="form-control FuncionarioNome" name="nome">
-					</div>
-					<br>
-					<div class="col-auto">
-						<label for="whatsapp" class="form-label">Contato (Whatsapp)</label>
-						<input type="tel" id="whatsapp" class="form-control FuncionarioWhatsapp" name="whatsapp">
-					</div>
-					<div class="col-auto">
-						<br>
-						<label for="" class="form-label">Serviços - Selecione os serviços para este
-							funcionário</label>
-					</div>
-					<div class="col-auto">
-						<div class="card">
-							<div class="card-body listServicos">
+<!-- Modal Novo Serviço-->
+<div class="modal fade" id="ModalNovoServico" tabindex="-1" data-bs-backdrop="static"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Novo Serviço</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-auto">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" id="nome" class="form-control newServicoNome" name="nome">
+                </div>
+                <br>
+                <div class="col-auto">
+                    <label for="preco" class="form-label">Valor do Serviço R$</label>
+                    <input type="text" id="preco" class="form-control newServicoPreco dinheiro" placeholder="0,00">
+                </div>
+                <br>
+                <div class="col-auto">
+                    <label for="descricao" class="form-label">Descrição do Serviço</label>
+                    <input type="text" id="descricao" class="form-control newServicoDescricao"
+                           placeholder="Resuma este serviço para seus clientes...">
+                </div>
+                <br>
+                <div class="col-auto">
+                    <label for="descricao" class="form-label">Tempo estimado (Ex.: 30min -> 00:30)</label>
+                    <input type="time" id="tempo_servico" class="form-control newTempoServico">
+                </div>
+                <br>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Imagem do Serviço</label>
+                    <input class="form-control newServicoFoto" type="file" id="formFile">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary addservico" data-bs-dismiss="modal">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-							</div>
-						</div>
-					</div>
-					<div class="col-auto">
-						<br>
-						<label for="" class="form-label">Horários - Selecione os horários para este
-							funcionário</label>
-					</div>
-					<div class="col-auto">
-						<div class="card">
-							<div class="card-body listHorarios">
+<!-- Modal Novo Horário-->
+<div class="modal fade" id="ModalNovoHorario" tabindex="-1" data-bs-backdrop="static"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Novo Horário</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-auto">
+                    <label for="hora" class="form-label">Hora (Ex.: 30min -> 00:30)</label>
+                    <input type="time" id="hora" class="form-control newHora">
+                </div>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary addhorario" data-bs-dismiss="modal">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-							</div>
-						</div>
-					</div>
-					<br>
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary savefuncionario"
-						data-bs-dismiss="modal">Salvar</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- Modal Novo Funcionário-->
+<div class="modal fade" id="ModalFuncionario" tabindex="-1" data-bs-backdrop="static"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 titleFuncionario" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-	<button type="button" class="btn btn-primary d-none" id="liveToastBtn">Show live toast</button>
+                <div class="col-auto">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" id="nome" class="form-control FuncionarioNome" name="nome">
+                </div>
+                <br>
+                <div class="col-auto">
+                    <label for="whatsapp" class="form-label">Contato (Whatsapp)</label>
+                    <input type="tel" id="whatsapp" class="form-control FuncionarioWhatsapp" name="whatsapp">
+                </div>
+                <div class="col-auto">
+                    <br>
+                    <label for="" class="form-label">Serviços - Selecione os serviços para este
+                        funcionário</label>
+                </div>
+                <div class="col-auto">
+                    <div class="card">
+                        <div class="card-body listServicos">
 
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
-			<div class="toast-header">
-				<i class="fa-solid fa-check"></i>
-				<strong class="me-auto">Agenda Aí</strong>
-				<small></small>
-				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-				Imagem Carregada com Sucesso!
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <br>
+                    <label for="" class="form-label">Horários - Selecione os horários para este
+                        funcionário</label>
+                </div>
+                <div class="col-auto">
+                    <div class="card">
+                        <div class="card-body listHorarios">
 
-	<script th:inline="javascript">
-		let userid = /*[[${userid}]]*/ "Teste";
-	</script>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary savefuncionario"
+                        data-bs-dismiss="modal">Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary d-none" id="liveToastBtn">Show live toast</button>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="fa-solid fa-check"></i>
+            <strong class="me-auto">Agenda Aí</strong>
+            <small></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Imagem Carregada com Sucesso!
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    let userid = /*[[${userid}]]*/ "Teste";
+</script>
 
 </body>
 

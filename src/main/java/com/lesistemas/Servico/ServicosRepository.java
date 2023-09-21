@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.lesistemas.Funcionario.Funcionario;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ServicosRepository extends JpaRepository<Servico, Long>{
 	
 	@Query(value = "SELECT * FROM servicos where id_empresa = ?1", nativeQuery = true)

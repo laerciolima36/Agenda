@@ -1,4 +1,4 @@
-package com.lesistemas.utils;
+package com.lesistemas.Usuario;
 
 public enum Role {
 	
