@@ -96,11 +96,6 @@ function htmlMostraServicos(servicos) {
 			'</div>' +
 			'<br>' +
 
-			'<div class="mb-3">' +
-			'<label for="formFile" class="form-label">Imagem do Serviço</label>' +
-			'<input class="form-control updateFoto' + servico.id_servico + '" type="file" id="formFile">' +
-			'</div>' +
-
 			'</div>' +
 
 			'<div class="modal-footer">' +
@@ -179,7 +174,6 @@ function htmlMostraServicos(servicos) {
 		$(".newServicoPreco").val('');
 		$(".newServicoDescricao").val('');
 		$(".newTempoServico").val('');
-		$(".newServicoFoto").val('');
 	});
 }
 
@@ -190,14 +184,12 @@ function addservico() {
 	let preco = $(".newServicoPreco").val();
 	let descricao = $(".newServicoDescricao").val();
 	let tempoServico = $(".newTempoServico").val();
-	let foto = $(".newServicoFoto").val();
 
 	let servico = {
 		"nome": nome,
 		"preco": preco,
 		"descricao": descricao,
 		"tempoServico": tempoServico,
-		"foto": foto,
 		"empresa": {
 			"id_empresa": dadosempresa.id_empresa
 		}
