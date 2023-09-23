@@ -3,6 +3,8 @@ package com.lesistemas.Servico;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.lesistemas.imagens.Servico.ImagemServico;
@@ -44,4 +46,20 @@ public class ServicosService {
 			save(serv);
 		}
 	}
+
+    public Servico updateServico(Long id, Servico servico) {
+		Servico ser = this.findById(id);
+
+		if (ser == null) {
+			return null;
+		}
+
+		ser.setNome(servico.getNome());
+		ser.setPreco(servico.getPreco());
+		ser.setDescricao(servico.getDescricao());
+		ser.setTempoServico(servico.getTempoServico());
+
+		return this.save(ser);
+
+    }
 }

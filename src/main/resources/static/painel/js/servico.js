@@ -185,6 +185,8 @@ function addservico() {
 	let descricao = $(".newServicoDescricao").val();
 	let tempoServico = $(".newTempoServico").val();
 
+    if(validarServico(nome, preco, descricao, tempoServico)){
+
 	let servico = {
 		"nome": nome,
 		"preco": preco,
@@ -197,6 +199,18 @@ function addservico() {
 
 	let url = "/servicos/save";
 	fetchPost(url, exibirServicos, servico);
+	}else{
+	alert("Preencha todos os Campos")
+	}
+}
+
+function validarServico(nome, preco, descricao, tempoServico){
+
+    if(nome != "" && preco != "" && descricao != "" && tempoServico != ""){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function deleteservico(id_servico) {
@@ -210,7 +224,6 @@ function updateservico(id) {
 	let preco = $(".updatePreco" + id).val();
 	let descricao = $(".updateDescricao" + id).val();
 	let tempoServico = $(".updateTempoServico" + id).val();
-	let foto = $(".updateFoto" + id).val();
 
 	let servico = {
 		"id_servico": id,
@@ -218,7 +231,6 @@ function updateservico(id) {
 		"preco": preco,
 		"descricao": descricao,
 		"tempoServico": tempoServico,
-		"foto": foto,
 		"empresa": {
 			"id_empresa": dadosempresa.id_empresa
 		}

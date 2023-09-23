@@ -48,13 +48,6 @@ public class ServicosController {
 
     @PutMapping("/servicos/update/{id}")
     public ResponseEntity<Object> updateServico(@PathVariable(value = "id") Long id, @RequestBody Servico servico){
-    	Servico servicoOptional = servicosService.findById(id);
-    	
-    	if (servicoOptional == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Serviço não Encontrado!");
-        }
-    	
-        return ResponseEntity.status(HttpStatus.OK).body(servicosService.save(servico));
+        return ResponseEntity.status(HttpStatus.OK).body(servicosService.updateServico(id, servico));
     }
-
 }
