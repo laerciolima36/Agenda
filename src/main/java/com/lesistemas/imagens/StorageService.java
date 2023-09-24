@@ -59,4 +59,8 @@ public class StorageService {
 		return new UploadRequestResult(imagem.getId_imagem(), presignedUploadUrl.toString(), "servico");
 	}
 
+	public void deleteImageS3(InterfaceImagem imagem){
+		cloudStorageProvider.delete(imagem);
+	}
+
 }

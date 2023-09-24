@@ -38,8 +38,6 @@ public class Servico {
 	
 	private String tempoServico;
 	
-	private String foto;
-	
 	@ManyToMany(mappedBy = "servicos")
 	private Set<Funcionario> funcionarios = new HashSet<>();
 	
@@ -103,14 +101,6 @@ public class Servico {
 
 	public void setTempoServico(String tempoServico) {
 		this.tempoServico = tempoServico;
-	}
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 	public void setFuncionario(Set<Funcionario> funcionarios) {

@@ -79,6 +79,7 @@ public class ImagemEmpresa implements InterfaceImagem{
 	}
 
 
+	@Override
 	public String getUrl() {
 		return url;
 	}

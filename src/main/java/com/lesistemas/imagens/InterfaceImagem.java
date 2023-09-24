@@ -8,4 +8,6 @@ public interface InterfaceImagem {
 
 	Long getContentLength();
 
+	String getUrl();
+
 }

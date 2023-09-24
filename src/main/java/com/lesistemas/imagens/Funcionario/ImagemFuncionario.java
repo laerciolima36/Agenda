@@ -79,6 +79,7 @@ public class ImagemFuncionario implements InterfaceImagem{
 	}
 
 
+	@Override
 	public String getUrl() {
 		return url;
 	}

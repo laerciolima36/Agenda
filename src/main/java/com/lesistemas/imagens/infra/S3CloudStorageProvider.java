@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 
 import com.lesistemas.imagens.CloudStorageProvider;
 import com.lesistemas.imagens.InterfaceImagem;
-import com.lesistemas.imagens.Empresa.ImagemEmpresa;
 
 import lombok.AllArgsConstructor;
+
 import software.amazon.awssdk.awscore.AwsRequestOverrideConfiguration;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignRequest;
@@ -47,7 +48,15 @@ public class S3CloudStorageProvider implements CloudStorageProvider{
 		
 		return s3Presigner.presignPutObject(presignRequest).url();
 	}
-	
-	
 
+	@Override
+	public void delete(InterfaceImagem imagem) {
+		String keyName = imagem.getPath();
+		//String keyName = "laercio/servicos/2";
+		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder().bucket(storageProperties.getS3().getBucket()).key(keyName).build();
+		s3client.deleteObject(deleteObjectRequest);
+
+		System.out.println("Executou delete da AmazonS3");
+		System.out.println(deleteObjectRequest);
+	}
 }

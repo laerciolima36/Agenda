@@ -30,8 +30,9 @@ public class ServicosService {
 	}
 
 	@Transactional
-	public void delete(Servico servico) {
+	public ResponseEntity<Object> delete(Servico servico) {
 		servicosRepository.delete(servico);
+		return ResponseEntity.status(HttpStatus.OK).body("Serviço Deletado com Sucesso!");
 	}
 
 	public List<Servico> findByIdEmpresa(Long id) {

@@ -78,7 +78,7 @@ public class ImagemServico implements InterfaceImagem{
 		this.nome = nome;
 	}
 
-
+	@Override
 	public String getUrl() {
 		return url;
 	}

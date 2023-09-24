@@ -2,6 +2,7 @@ package com.lesistemas.Servico;
 
 import java.util.List;
 
+import com.lesistemas.imagens.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,13 @@ public class ServicosController {
 	@Autowired
 	ServicosService servicosService;
 
+	@Autowired
+	StorageService storageService;
+
 	@GetMapping(value = "/servicos/{id}")
 	public ResponseEntity<Servico> getServicoById(@PathVariable("id") Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicosService.findById(id));
 	}
-	
 	
 	@GetMapping(value = "/get/servicos/empresa/{idEmpresa}")
 	public ResponseEntity<List<Servico>> getServicoByIdEmpresa(@PathVariable("idEmpresa") Long id) {
@@ -35,15 +38,19 @@ public class ServicosController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(servicosService.save(servico));
 	}
 	
-	
     @DeleteMapping("/servicos/delete/{id}")
     public ResponseEntity<Object> deleteServico(@PathVariable(value = "id") Long id){
-        Servico servicoOptional = servicosService.findById(id);
-        if (servicoOptional == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Serviço não Encontrado!");
-        }
-        servicosService.delete(servicoOptional);
-        return ResponseEntity.status(HttpStatus.OK).body("Serviço Deletado com Sucesso!");
+		Servico servico = servicosService.findById(id);
+
+		if (servico == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Serviço não Encontrado!");
+		}
+
+		if(servico.getImg() != null){
+			storageService.deleteImageS3(servico.getImg());
+		}
+
+        return servicosService.delete(servico);
     }
 
     @PutMapping("/servicos/update/{id}")
