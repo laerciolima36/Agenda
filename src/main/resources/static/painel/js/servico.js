@@ -100,7 +100,7 @@ function htmlMostraServicos(servicos) {
 
 			'<div class="modal-footer">' +
 			'<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>' +
-			'<button type="button" id="' + servico.id_servico + '" class="btn btn-primary updatebtn" data-bs-dismiss="modal">Salvar Alterações</button>' +
+			'<button type="button" id="' + servico.id_servico + '" class="btn btn-primary updatebtn">Salvar Alterações</button>' +
 			'</div></div></div></div>');
 
 
@@ -199,6 +199,7 @@ function addservico() {
 
 	let url = "/servicos/save";
 	fetchPost(url, exibirServicos, servico);
+	$("ModalNovoServico").modal('hide');
 	}else{
 	alert("Preencha todos os Campos")
 	}
@@ -225,6 +226,8 @@ function updateservico(id) {
 	let descricao = $(".updateDescricao" + id).val();
 	let tempoServico = $(".updateTempoServico" + id).val();
 
+    if(validarServico(nome, preco, descricao, tempoServico)){
+
 	let servico = {
 		"id_servico": id,
 		"nome": nome,
@@ -238,6 +241,11 @@ function updateservico(id) {
 
 	let url = "/servicos/update/" + id;
 	fetchPut(url, exibirServicos, servico);
+	$("ModalAlteraServico"+id).modal('hide');
+
+	}else{
+    alert("Preencha todos os Campos")
+    }
 
 }
 
