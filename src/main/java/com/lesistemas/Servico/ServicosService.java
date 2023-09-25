@@ -31,7 +31,7 @@ public class ServicosService {
 
 	@Transactional
 	public ResponseEntity<Object> delete(Servico servico) {
-		servicosRepository.delete(servico);
+		servicosRepository.deleteNoCheckFk(servico.getId_servico());
 		return ResponseEntity.status(HttpStatus.OK).body("Serviço Deletado com Sucesso!");
 	}
 

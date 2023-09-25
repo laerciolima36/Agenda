@@ -199,14 +199,15 @@ function addservico() {
 
 	let url = "/servicos/save";
 	fetchPost(url, exibirServicos, servico);
-	$("ModalNovoServico").modal('hide');
+
+	$("#ModalNovoServico").modal('hide');
+
 	}else{
-	alert("Preencha todos os Campos")
+	    alert("Preencha todos os Campos")
 	}
 }
 
 function validarServico(nome, preco, descricao, tempoServico){
-
     if(nome != "" && preco != "" && descricao != "" && tempoServico != ""){
         return true;
     }else{
