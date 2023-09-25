@@ -56,7 +56,7 @@ function htmlMostraHorarios(horarios) {
 
 			'<div class="col-auto">' +
 			'<label for="hora" class="form-label">Hora (Ex.: 30min -> 00:30)</label>' +
-			'<input type="time" id="hora" class="form-control updateHora' + horario.id_horario + '" value="' + horario.hora + '">' +
+			'<input type="text" id="hora" class="form-control maskHora updateHora' + horario.id_horario + '" value="' + horario.hora + '">' +
 			'</div>' +
 			'<br>' +
 
@@ -64,10 +64,12 @@ function htmlMostraHorarios(horarios) {
 			
 			'<div class="modal-footer">'+
 			'<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>'+
-			'<button type="button" id="' + horario.id_horario + '" class="btn btn-primary updatebtn" data-bs-dismiss="modal">Salvar Alterações</button>'+
+			'<button type="button" id="' + horario.id_horario + '" class="btn btn-primary updatebtn">Salvar Alterações</button>'+
 			'</div></div></div></div>');
+
 		}
-		
+
+	$('.maskHora').mask("99:99");
 	$('.deletebtn').off();
 	$('.magic').off();
 	$('.updatebtn').off();
@@ -91,19 +93,34 @@ function addhorario() {
 
 	let hora = $(".newHora").val();
 
-	let horario = {
-		"hora": hora,
-		"empresa": {
-			"id_empresa": dadosempresa.id_empresa
-		}
-	}
+    if(validarCampos(hora)){
+        let horario = {
+            "hora": hora,
+            "empresa": {
+                "id_empresa": dadosempresa.id_empresa
+            }
+        }
+
 
 	let url = "/horarios/save";
 	fetchPost(url, exibirHorarios, horario);
+
+    $("#ModalNovoHorario").modal('hide');
+
+    }else{
+        alert("Preencha todos os Campos Corretamente!")
+    }
+}
+
+function validarCampos(hora){
+    if(hora != "" && hora.length == 5){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function deletehorario(id_horario) {
-	console.log('deletando horario')
 	let url = "/horarios/delete/" + id_horario;
 	fetchDel(url, exibirHorarios);
 }
@@ -112,15 +129,21 @@ function updatehorario(id) {
 
 	let hora = $(".updateHora" + id).val();
 
-	let horario = {
-		"id_horario": id,
-		"hora": hora,
-		"empresa": {
-			"id_empresa": dadosempresa.id_empresa
-		}
-	}
+    if(validarCampos(hora)){
+        let horario = {
+            "id_horario": id,
+            "hora": hora,
+            "empresa": {
+                "id_empresa": dadosempresa.id_empresa
+            }
+        }
 
-	let url = "/horarios/update/" + id;
-	fetchPut(url, exibirHorarios, horario);
+        let url = "/horarios/update/" + id;
+        fetchPut(url, exibirHorarios, horario);
+
+        $("ModalAlteraHorario"+id).modal('hide');
+    }else{
+       alert("Preencha todos os Campos")
+    }
 
 }

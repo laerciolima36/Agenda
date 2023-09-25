@@ -28,7 +28,9 @@ public class HorarioService {
 	
 	@Transactional
 	public void delete(Horario horario) {
-		horarioRepository.delete(horario);		
+		horarioRepository.NoCheckFk();
+		horarioRepository.delete(horario);
+		horarioRepository.CheckFk();
 	}
 
 	public List<Horario> findByIdEmpresa(Long id) {

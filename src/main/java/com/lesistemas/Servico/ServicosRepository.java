@@ -3,6 +3,7 @@ package com.lesistemas.Servico;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.lesistemas.Funcionario.Funcionario;
@@ -14,7 +15,11 @@ public interface ServicosRepository extends JpaRepository<Servico, Long>{
 	@Query(value = "SELECT * FROM servicos where id_empresa = ?1", nativeQuery = true)
 	List<Servico> findByIdEmpresa(Long id);
 
+	@Modifying
+	@Query(value= "SET FOREIGN_KEY_CHECKS = 0", nativeQuery = true)
+	void NoCheckFk();
 
-	@Query(value= "SET FOREIGN_KEY_CHECKS = 0; DELETE from servicos where id_servico = ?1; SET FOREIGN_KEY_CHECKS = 1;", nativeQuery = true)
-	void deleteNoCheckFk(Long id);
+	@Modifying
+	@Query(value= "SET FOREIGN_KEY_CHECKS = 1", nativeQuery = true)
+	void CheckFk();
 }

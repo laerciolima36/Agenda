@@ -242,6 +242,7 @@ function updateservico(id) {
 
 	let url = "/servicos/update/" + id;
 	fetchPut(url, exibirServicos, servico);
+
 	$("ModalAlteraServico"+id).modal('hide');
 
 	}else{
