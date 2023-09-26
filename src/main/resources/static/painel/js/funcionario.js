@@ -1,7 +1,7 @@
-import { apiGet } from "./api.js";
-import { apiPost } from "./api.js";
-import { apiDelete } from "./api.js";
-import { apiUpdate } from "./api.js";
+import { fetchGet } from "./api.js";
+import { fetchPost } from "./api.js";
+import { fetchDel } from "./api.js";
+import { fetchPut } from "./api.js";
 import { fetchPostImage } from "./api.js";
 import { dadosempresa } from "./empresa.js";
 
@@ -14,7 +14,7 @@ var tipoform;
 //funções
 export function exibirFuncionarios() {
 	const URL_GET_FUN_BY_EMPRESA = "/get/funcionarios/empresa/" + dadosempresa.id_empresa;
-	apiGet(URL_GET_FUN_BY_EMPRESA, htmlMostraFuncionarios); //Busca no banco de dados todos os funcionarios para determinada empresa
+	fetchGet(URL_GET_FUN_BY_EMPRESA, htmlMostraFuncionarios); //Busca no banco de dados todos os funcionarios para determinada empresa
 
 	exibirServicosToFuncionario(); //Exibe a lista de serviços cadastrado na empresa no modal de funcionario(cadastro/alteracao)
 	exibirHorariosToFuncionario(); //Exibe a lista de horários cadastrado na empresa no modal de funcionario(cadastro/alteracao)
@@ -159,11 +159,6 @@ function htmlMostraFuncionarios(funcionarios) {
 	});
 
 }
-
-function setEditImage() {
-
-}
-
 
 $('.FuncionarioWhatsapp').mask('(99) 99999-9999');
 
@@ -344,7 +339,7 @@ function setDadosAlteraFuncionario(funcionario) {
 //Busca funcionario pelo id, chamado para alterar funcionario
 function getByIdFuncionario(id) {
 	let URL_GET_FUN_BY_ID = "/funcionarios/" + id;
-	apiGet(URL_GET_FUN_BY_ID, setDadosAlteraFuncionario);
+	fetchGet(URL_GET_FUN_BY_ID, setDadosAlteraFuncionario);
 }
 
 //Coleta dados do Modal Funcionario (cadastro) e grava no banco de dados
@@ -353,29 +348,42 @@ function addfuncionario() {
 	let nome = $(".FuncionarioNome").val();
 	let whatsapp = $(".FuncionarioWhatsapp").val();
 
-	let funcionario = {
-		"nome": nome,
-		"whatsapp": whatsapp,
-		"empresa": {
-			"id_empresa": dadosempresa.id_empresa
-		},
-		"servicos": arrayServico,
-		"horarios": arrayHorario,
-	}
+    if(validarFuncionario(nome, whatsapp)){
+        let funcionario = {
+            "nome": nome,
+            "whatsapp": whatsapp,
+            "empresa": {
+                "id_empresa": dadosempresa.id_empresa
+            },
+            "servicos": arrayServico,
+            "horarios": arrayHorario,
+        }
 
-	let url = "/funcionarios/save";
-	apiPost(url, exibirFuncionarios, funcionario);
+        let url = "/funcionarios/save";
+        fetchPost(url, exibirFuncionarios, funcionario);
 
-	arrayServico = [];
-	arrayHorario = [];
+        arrayServico = [];
+        arrayHorario = [];
+
+        $("#ModalFuncionario").modal('hide');
+
+    }else{
+        alert("Preencha todos os Campos")
+    }
 
 }
-
+function validarFuncionario(nome, whatsapp){
+    if(nome != "" && whatsapp != ""){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 //Deleta um funcionario
 function deletefuncionario(id_funcionario) {
 	let url = "/funcionarios/delete/" + id_funcionario;
-	apiDelete(url, exibirFuncionarios);
+	fetchDel(url, exibirFuncionarios);
 }
 
 //Atualiza o funcionario
@@ -384,34 +392,41 @@ function updatefuncionario(id) {
 	let nome = $(".FuncionarioNome").val();
 	let whatsapp = $(".FuncionarioWhatsapp").val();
 
-	let funcionario = {
-		"id_funcionario": id,
-		"nome": nome,
-		"whatsapp": whatsapp,
-		"empresa": {
-			"id_empresa": dadosempresa.id_empresa
-		},
-		"servicos": arrayServico,
-		"horarios": arrayHorario
-	}
+    if(validarFuncionario(nome, whatsapp)){
+        let funcionario = {
+            "id_funcionario": id,
+            "nome": nome,
+            "whatsapp": whatsapp,
+            "empresa": {
+                "id_empresa": dadosempresa.id_empresa
+            },
+            "servicos": arrayServico,
+            "horarios": arrayHorario
+        }
 
-	let url = "/funcionarios/update/" + id;
-	apiUpdate(url, exibirFuncionarios, funcionario);
+        let url = "/funcionarios/update/" + id;
+        fetchPut(url, exibirFuncionarios, funcionario);
 
-	arrayServico = [];
-	arrayHorario = [];
+        arrayServico = [];
+        arrayHorario = [];
+
+        $("#ModalFuncionario").modal('hide');
+
+    }else{
+        alert("Preencha todos os Campos")
+    }
 }
 
 //Puxa todos os serviços cadastrado na empresa
 function exibirServicosToFuncionario() {
 	let url = "/get/servicos/empresa/" + dadosempresa.id_empresa;
-	apiGet(url, viewServicos);
+	fetchGet(url, viewServicos);
 }
 
 //Puxa todos os horarios cadastrados na empresa
 function exibirHorariosToFuncionario() {
 	let url = "/horarios/empresa/" + dadosempresa.id_empresa;
-	apiGet(url, viewHorarios);
+	fetchGet(url, viewHorarios);
 }
 
 function salvarImagem(file, id_funcionario) {

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.lesistemas.Empresa.Empresa;
@@ -90,4 +92,18 @@ public class FuncionarioService {
 		}
 	}
 
+	public ResponseEntity<Object> updateFuncionario(Long id, Funcionario funcionario) {
+		Funcionario func = findById(id);
+
+		if (func == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionário não Encontrado!");
+		}
+
+		func.setNome(funcionario.getNome());
+		func.setHorarios(funcionario.getHorarios());
+		func.setServicos(funcionario.getServicos());
+		func.setWhatsapp(funcionario.getWhatsapp());
+
+		return ResponseEntity.status(HttpStatus.OK).body(save(func));
+	}
 }

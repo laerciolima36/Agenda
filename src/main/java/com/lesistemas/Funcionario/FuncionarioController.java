@@ -50,13 +50,7 @@ public class FuncionarioController {
 
     @PutMapping("/funcionarios/update/{id}")
     public ResponseEntity<Object> updateFuncionario(@PathVariable(value = "id") Long id, @RequestBody Funcionario funcionario){
-    	Funcionario funcionarioOptional = funcionarioService.findById(id);
-    	
-    	if (funcionarioOptional == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionário não Encontrado!");
-        }
-    	
-        return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.save(funcionario));
+        return funcionarioService.updateFuncionario(id, funcionario);
     }
     
     
