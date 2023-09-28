@@ -6,13 +6,12 @@ import java.util.Set;
 
 import com.lesistemas.Empresa.Empresa;
 import com.lesistemas.Horario.Horario;
+import com.lesistemas.PlanoAtendimento.Planoatendimento;
 import com.lesistemas.Reserva.Reserva;
 import com.lesistemas.Servico.Servico;
 import com.lesistemas.imagens.Funcionario.ImagemFuncionario;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -44,21 +43,21 @@ public class Funcionario {
 	@JoinColumn(name = "id_empresa")
 	private Empresa empresa;
 
+	@ManyToOne
+	@JoinColumn(name = "id_plano")
+	private Planoatendimento planoatendimento;
+
 	@ManyToMany()
 	@JoinTable(name = "funcionarios_servicos", joinColumns = @JoinColumn(name = "fk_funcionario"), inverseJoinColumns = @JoinColumn(name = "fk_servico"))
 	private Set<Servico> servicos = new HashSet<>();
 	
-	@ManyToMany()
-	@JoinTable(name = "funcionarios_horarios", joinColumns = @JoinColumn(name = "fk_funcionario"), inverseJoinColumns = @JoinColumn(name = "fk_horario"))
-	@OrderBy("hora")
-	private Set<Horario> horarios = new HashSet<>();
-	
 	@OneToMany(mappedBy = "funcionario")
-	private List<Reserva> reserva; //= new ArrayList<>();
+	private List<Reserva> reserva;
 	
 	@OneToOne()
 	@JoinColumn(name="id_imagem")
 	private ImagemFuncionario img;
+
 
 	public Funcionario() {
 	}
@@ -67,21 +66,18 @@ public class Funcionario {
 		this.nome = nome;
 		this.whatsapp = whatsapp;
 	}
-	
+
+
+	public void setPlanoatendimento(Planoatendimento planoatendimento) {
+		this.planoatendimento = planoatendimento;
+	}
+
 	public ImagemFuncionario getImg() {
 		return img;
 	}
 	
 	public void setImg(ImagemFuncionario img) {
 		this.img = img;
-	}
-	
-	public Set<Horario> getHorarios() {
-		return horarios;
-	}
-	
-	public void setHorarios(Set<Horario> horarios) {
-		this.horarios = horarios;
 	}
 	
 	public Set<Servico> getServicos() {
@@ -119,6 +115,8 @@ public class Funcionario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+
 
 	@Override
 	public String toString() {

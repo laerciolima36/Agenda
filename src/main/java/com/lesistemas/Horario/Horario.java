@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.lesistemas.Dias.Dias;
+import com.lesistemas.PlanoAtendimento.Planoatendimento;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -36,9 +38,9 @@ public class Horario {
 	
 	@OneToMany(mappedBy = "horario")
 	private List<Reserva> reserva;
-	
-	@ManyToMany(mappedBy = "horarios")
-	private Set<Funcionario> funcionarios = new HashSet<>();
+
+	@ManyToMany(mappedBy = "horario")
+	private Set<Dias> dias = new HashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "id_empresa")
@@ -62,10 +64,6 @@ public class Horario {
 	
 	public void setHora(LocalTime hora) {
 		this.hora = hora;
-	}
-	
-	public void setFuncionarios(Set<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
 	}
 	
 	public void setEmpresa(Empresa empresa) {

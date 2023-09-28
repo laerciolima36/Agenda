@@ -75,10 +75,10 @@ public class FuncionarioService {
 		Funcionario funcionario = funcionarioRepository.findById(id_funcionario).get();
 		Horario horario = horarioRepository.findById(id_horario).get();
 		
-		HorarioSet = funcionario.getHorarios();
+		//HorarioSet = funcionario.getHorarios();
 		HorarioSet.add(horario);
 		
-		funcionario.setHorarios(HorarioSet);
+		//funcionario.setHorarios(HorarioSet);
 		
 		return funcionarioRepository.save(funcionario);
 	}
@@ -100,7 +100,7 @@ public class FuncionarioService {
 		}
 
 		func.setNome(funcionario.getNome());
-		func.setHorarios(funcionario.getHorarios());
+		//func.setHorarios(funcionario.getHorarios());
 		func.setServicos(funcionario.getServicos());
 		func.setWhatsapp(funcionario.getWhatsapp());
 
