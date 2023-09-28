@@ -25,8 +25,6 @@ public class Planoatendimento {
     @JoinTable(name = "plano_dias", joinColumns = @JoinColumn(name = "fk_plano"), inverseJoinColumns = @JoinColumn(name = "fk_dias"))
     private Set<Dias> dias = new HashSet<>();
 
-
-
     public Long getId_plano() {
         return id_plano;
     }
