@@ -40,4 +40,5 @@ public class Planoatendimento {
     public void setDias(Set<Dias> dias) {
         this.dias = dias;
     }
+
 }
