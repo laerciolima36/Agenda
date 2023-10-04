@@ -3,6 +3,7 @@ package com.lesistemas.Dias;
 import com.lesistemas.Horario.Horario;
 import com.lesistemas.PlanoAtendimento.Planoatendimento;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +17,9 @@ public class Dias {
 
     private DiasEnum dia_semana;
 
+    @Getter
     @ManyToMany()
-    @JoinTable(name = "dias_horas", joinColumns = @JoinColumn(name = "fk_dia"), inverseJoinColumns = @JoinColumn(name = "fk_horario"))
+    @JoinTable(name = "horas_do_dia", joinColumns = @JoinColumn(name = "fk_dia"), inverseJoinColumns = @JoinColumn(name = "fk_horario"))
     @OrderBy("hora")
     private Set<Horario> horario = new HashSet<>();
 
@@ -29,4 +31,7 @@ public class Dias {
         this.dia_semana = dia_semana;
     }
 
+    public void setHorario(Set<Horario> horario) {
+        this.horario = horario;
+    }
 }

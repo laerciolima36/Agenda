@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lesistemas.Empresa.Empresa;
 import com.lesistemas.Horario.Horario;
 import com.lesistemas.PlanoAtendimento.Planoatendimento;
@@ -11,21 +13,10 @@ import com.lesistemas.Reserva.Reserva;
 import com.lesistemas.Servico.Servico;
 import com.lesistemas.imagens.Funcionario.ImagemFuncionario;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.OrderBy;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 @Entity
 @Table(name = "funcionarios")
 public class Funcionario {
@@ -43,7 +34,7 @@ public class Funcionario {
 	@JoinColumn(name = "id_empresa")
 	private Empresa empresa;
 
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_plano")
 	private Planoatendimento planoatendimento;
 
@@ -67,19 +58,14 @@ public class Funcionario {
 		this.whatsapp = whatsapp;
 	}
 
-
-	public void setPlanoatendimento(Planoatendimento planoatendimento) {
-		this.planoatendimento = planoatendimento;
-	}
-
 	public ImagemFuncionario getImg() {
 		return img;
 	}
-	
+
 	public void setImg(ImagemFuncionario img) {
 		this.img = img;
 	}
-	
+
 	public Set<Servico> getServicos() {
 		return servicos;
 	}
@@ -103,7 +89,7 @@ public class Funcionario {
 	public void setWhatsapp(String whatsapp) {
 		this.whatsapp = whatsapp;
 	}
-	
+
 	public String getWhatsapp() {
 		return whatsapp;
 	}
@@ -116,7 +102,13 @@ public class Funcionario {
 		this.nome = nome;
 	}
 
+	public void setPlanoatendimento(Planoatendimento planoatendimento) {
+		this.planoatendimento = planoatendimento;
+	}
 
+	public Planoatendimento getPlanoatendimento(){
+		return this.planoatendimento;
+	}
 
 	@Override
 	public String toString() {

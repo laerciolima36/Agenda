@@ -103,8 +103,8 @@ public class Servico {
 		this.tempoServico = tempoServico;
 	}
 
-	public void setFuncionario(Set<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
+	public void setFuncionario(Set<Funcionario> funcionario) {
+		this.funcionarios = funcionario;
 	}
 	
 	public void setEmpresa(Empresa empresa) {
