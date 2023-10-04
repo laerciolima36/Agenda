@@ -37,19 +37,19 @@ public class Empresa {
 	private String nome;
 
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Funcionario> funcionarios; // = new ArrayList<>();
+	private List<Funcionario> funcionarios;
 
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<ImagemEmpresa> imagem;
 
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Servico> servicos; // = new ArrayList<>();
+	private List<Servico> servicos;
 
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Horario> horarios; // = new ArrayList<>();
+	private List<Horario> horarios;
 
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Reserva> reserva; // = new ArrayList<>();
+	private List<Reserva> reserva;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_endereco")
