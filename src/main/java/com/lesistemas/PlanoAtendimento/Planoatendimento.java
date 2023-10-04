@@ -1,15 +1,11 @@
 package com.lesistemas.PlanoAtendimento;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lesistemas.Dias.Dias;
 import com.lesistemas.Funcionario.Funcionario;
-import com.lesistemas.Horario.Horario;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

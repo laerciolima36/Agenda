@@ -7,22 +7,13 @@ import java.util.Set;
 
 import com.lesistemas.Dias.Dias;
 import com.lesistemas.PlanoAtendimento.Planoatendimento;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lesistemas.Empresa.Empresa;
 import com.lesistemas.Funcionario.Funcionario;
 import com.lesistemas.Reserva.Reserva;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name="horario")
@@ -52,10 +43,6 @@ public class Horario {
 	
 	public Long getId_horario() {
 		return id_horario;
-	}
-	
-	public void setId_horario(Long id_horario) {
-		this.id_horario = id_horario;
 	}
 	
 	public LocalTime getHora() {

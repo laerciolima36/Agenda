@@ -1,5 +1,6 @@
 package com.lesistemas.Dias;
 
+import com.lesistemas.Funcionario.Funcionario;
 import com.lesistemas.Horario.Horario;
 import com.lesistemas.PlanoAtendimento.Planoatendimento;
 import jakarta.persistence.*;
@@ -13,15 +14,26 @@ import java.util.Set;
 public class Dias {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_dia;
 
     private DiasEnum dia_semana;
 
-    @Getter
-    @ManyToMany()
+    @ManyToMany(mappedBy = "dias")
+    private Set<Planoatendimento> planoatendimentos = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "horas_do_dia", joinColumns = @JoinColumn(name = "fk_dia"), inverseJoinColumns = @JoinColumn(name = "fk_horario"))
     @OrderBy("hora")
     private Set<Horario> horario = new HashSet<>();
+
+    public Long getId_dia() {
+        return id_dia;
+    }
+
+    public void setId_dia(Long id_dia) {
+        this.id_dia = id_dia;
+    }
 
     public DiasEnum getDia_semana() {
         return dia_semana;
@@ -33,5 +45,9 @@ public class Dias {
 
     public void setHorario(Set<Horario> horario) {
         this.horario = horario;
+    }
+
+    public Set<Horario> getHorario() {
+        return horario;
     }
 }
