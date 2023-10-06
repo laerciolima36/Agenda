@@ -21,4 +21,24 @@ public class PlanoatendimentoService {
     public ResponseEntity<Planoatendimento> addPlano(Planoatendimento planoatendimento) {
         return ResponseEntity.status(HttpStatus.OK).body(planoatendimentoRepository.save(planoatendimento));
     }
+
+    public Planoatendimento findById(Long id) {
+        return planoatendimentoRepository.findById(id).get();
+    }
+
+    public ResponseEntity<Object> delete(Planoatendimento planoatendimento) {
+        planoatendimentoRepository.delete(planoatendimento);
+        return ResponseEntity.status(HttpStatus.OK).body("Plano de atendimento Deletado com Sucesso!");
+    }
+
+    public Object updatePlano(Long id, Planoatendimento planoatendimento) {
+        Planoatendimento plano = findById(id);
+
+        if(plano == null){
+            return null;
+        }
+
+        return planoatendimentoRepository.save(planoatendimento);
+
+    }
 }

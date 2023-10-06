@@ -20,7 +20,7 @@ public class Planoatendimento {
     @OneToMany(mappedBy = "planoatendimento")
     private Set<Funcionario> funcionarios = new HashSet<>();
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     @OrderBy("dia_semana")
     @JoinTable(name = "dias_do_plano", joinColumns = @JoinColumn(name = "fk_plano"), inverseJoinColumns = @JoinColumn(name = "fk_dias"))
     private Set<Dias> dias = new HashSet<>();
