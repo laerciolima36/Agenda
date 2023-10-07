@@ -41,4 +41,8 @@ public class PlanoatendimentoService {
         return planoatendimentoRepository.save(planoatendimento);
 
     }
+
+    public List<Planoatendimento> findByIdEmpresa(Long id) {
+        return planoatendimentoRepository.findByEmpresa(id);
+    }
 }

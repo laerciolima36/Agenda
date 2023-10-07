@@ -3,6 +3,7 @@ package com.lesistemas.Empresa;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.lesistemas.PlanoAtendimento.Planoatendimento;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -44,6 +45,9 @@ public class Empresa {
 
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Servico> servicos;
+
+	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Planoatendimento> planoatendimentos;
 
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Horario> horarios;

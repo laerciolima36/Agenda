@@ -103,6 +103,7 @@ public class FuncionarioService {
 		//func.setHorarios(funcionario.getHorarios());
 		func.setServicos(funcionario.getServicos());
 		func.setWhatsapp(funcionario.getWhatsapp());
+		func.setPlanoatendimento(funcionario.getPlanoatendimento());
 
 		return ResponseEntity.status(HttpStatus.OK).body(save(func));
 	}

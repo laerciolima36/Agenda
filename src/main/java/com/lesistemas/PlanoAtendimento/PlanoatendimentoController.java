@@ -24,6 +24,11 @@ public class PlanoatendimentoController {
     public ResponseEntity<Planoatendimento> getPlanoById(@PathVariable("id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(planoatendimentoService.findById(id));
     }
+
+    @GetMapping(value = "/planoatendimento/empresa/{idEmpresa}")
+    public ResponseEntity<List<Planoatendimento>> getPlanoByIdEmpresa(@PathVariable("idEmpresa") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(planoatendimentoService.findByIdEmpresa(id));
+    }
     @PostMapping(value = "/planoatendimento/add")
     public ResponseEntity<Planoatendimento> addPlano(@RequestBody @Valid Planoatendimento planoatendimento){
         return planoatendimentoService.addPlano(planoatendimento);

@@ -17,7 +17,7 @@ export function exibirFuncionarios() {
 	fetchGet(URL_GET_FUN_BY_EMPRESA, htmlMostraFuncionarios); //Busca no banco de dados todos os funcionarios para determinada empresa
 
 	exibirServicosToFuncionario(); //Exibe a lista de serviços cadastrado na empresa no modal de funcionario(cadastro/alteracao)
-	exibirHorariosToFuncionario(); //Exibe a lista de horários cadastrado na empresa no modal de funcionario(cadastro/alteracao)
+	exibirPlanoToFuncionario(); //Exibe a lista de planos cadastrados na empresa no modal de funcionario(cadastro/alteracao)
 }
 
 //Exibe em lista todos os funcionarios
@@ -65,11 +65,11 @@ function htmlMostraFuncionarios(funcionarios) {
 			'<br>' +
 
 			'<div class="col-auto"> ' +
-			'<label for="" class="form-label">Horários que este funcionário atende</label> ' +
+			'<label for="" class="form-label">Plano de Atendimento</label> ' +
 			'</div> ' +
 
 			'<div class="card"> ' +
-			'<div class="card-body listHorariosDoFuncionario' + funcionario.id_funcionario + '">' +
+			'<div class="card-body dropPlano' + funcionario.id_funcionario + '">' +
 			'</div>  ' +
 			'</div>  ' +
 
@@ -83,7 +83,7 @@ function htmlMostraFuncionarios(funcionarios) {
 			'</div></div></li></ul></div>');
 
 		viewServicosDoFuncionario(funcionario); //Exibe os Serviços registrados para cada funcionario
-		viewHorariosDoFuncionario(funcionario); //Exibe os Horários registrados para cada funcionario
+		viewPlanoDoFuncionario(funcionario); //Exibe os Horários registrados para cada funcionario
 
 		listfuncionario.append('<div class="bg-dark bg-gradient" style="height: 3px"></div>');
 
@@ -183,11 +183,11 @@ function preparaModal(title, tipo, id_funcionario) {
 	$(".titleFuncionario").empty();
 	$(".titleFuncionario").append(title);
 	$(".checkServico").prop("checked", false);
-	$(".checkHorario").prop("checked", false);
+	//$(".checkHorario").prop("checked", false);
 	arrayServico = [];
-	arrayHorario = [];
+	//arrayHorario = [];
 	console.log("prepara modal " + arrayServico);
-	console.log("prepara modal " + arrayHorario);
+	//console.log("prepara modal " + arrayHorario);
 
 	if (tipoform) { //true modo cadastro
 		$(".FuncionarioNome").val('');
@@ -235,38 +235,15 @@ function viewServicos(servicos) {
 }
 
 //Exibe todos os horários da empresa no modal de funcionario
-function viewHorarios(horarios) {
+function viewPlanos(planos) {
 
-	let listHorarios = $(".listHorarios");
-	listHorarios.empty();
+	let selectplano = $("#selectPlano");
+	selectplano.empty();
+    selectplano.append('<option value="1">Plano Padrão</option>');
 
-	for (var horario of horarios) {
-		listHorarios.append(
-			'<div class="form-check form-check-inline">' +
-			'<input class="form-check-input checkHorario horario' + horario.id_horario + '" type="checkbox" id="' + horario.id_horario + '" value="option1">' +
-			'<label class="form-check-label" for="inlineCheckbox1">' + horario.hora + '</label>' +
-			'</div>'
-		);
+	for (var plano of planos) {
+		selectplano.append('<option value="'+plano.id_plano+'">'+plano.nome+'</option>');
 	}
-
-	$(".checkHorario").on("click", function() {
-		let ck = this;
-
-		if (ck.checked == true) {
-			let horario = new Object();
-			horario.id_horario = parseInt(ck.id, 10);
-			arrayHorario.push(horario);
-			console.log(arrayHorario);
-		}
-
-		if (ck.checked == false) {
-			const enderecoArray = arrayHorario.map(object => object.id_horario).indexOf(parseInt(ck.id, 10));
-			console.log("Endereço " + enderecoArray);
-			arrayHorario.splice(enderecoArray, 1);
-			console.log("Desmarcou " + ck.id);
-			console.log(arrayHorario);
-		}
-	});
 }
 
 //Mostra os serviços de todos os funcionario na lista
@@ -292,24 +269,21 @@ function viewServicosDoFuncionario(funcionario) {
 }
 
 //Mostra os horarios de todos os funcionario na lista
-function viewHorariosDoFuncionario(funcionario) {
+function viewPlanoDoFuncionario(funcionario) {
+    console.log("Chamou view plano : ");
+    console.log(funcionario);
+	let dropPlano = $(".dropPlano" + funcionario.id_funcionario);
 
-	let listHorariosDoFuncionario = $(".listHorariosDoFuncionario" + funcionario.id_funcionario);
-
-	if (!funcionario.horarios.length) {
-		listHorariosDoFuncionario.append(
+	if (!funcionario.planoatendimento) {
+		dropPlano.append(
 			'<div class="form-check form-check-inline">' +
-			'<label class="form-check-label text-danger" for="inlineCheckbox1"> Nenhum horário registrado para este funcionário! Clique em alterar para inserir...</label>' +
+			'<label class="form-check-label text-danger" for="inlineCheckbox1"> Nenhum Plano registrado para este funcionário! Clique em alterar para inserir...</label>' +
 			'</div>');
-	}
-
-	for (var horario of funcionario.horarios) {
-		listHorariosDoFuncionario.append(
-			'<div class="form-check form-check-inline">' +
-			'<label class="form-check-label" for="inlineCheckbox1"> - ' + horario.hora + '</label>' +
-			'</div>'
-		);
-
+	}else{
+	    dropPlano.append(
+        	'<div class="form-check form-check-inline">' +
+        	'<label class="form-check-label" for="inlineCheckbox1">'+funcionario.planoatendimento.nome+'</label>' +
+        	'</div>');
 	}
 }
 
@@ -327,13 +301,28 @@ function setDadosAlteraFuncionario(funcionario) {
 		console.log(arrayServico);
 	}
 
-	for (let horarioExistente of funcionario.horarios) {
-		$(".horario" + horarioExistente.id_horario).prop("checked", true);
-		let horario = new Object();
-		horario.id_horario = horarioExistente.id_horario;
-		arrayHorario.push(horario);
-		console.log(arrayHorario);
-	}
+	$("#selectPlano option").each(function(){
+	console.log("each");
+	    if(!funcionario.planoatendimento){
+	            if($(this).val() == 1){
+                    console.log("funcionario sem plano");
+                    $(this).attr('selected', true);
+                }
+	    }else{
+	         if($(this).val() == funcionario.planoatendimento.id_plano){
+        	      console.log("selected");
+                  $(this).attr('selected', true);
+             }
+	    }
+	})
+
+	//for (let horarioExistente of funcionario.horarios) {
+	//	$(".horario" + horarioExistente.id_horario).prop("checked", true);
+	//	let horario = new Object();
+	//	horario.id_horario = horarioExistente.id_horario;
+	//	arrayHorario.push(horario);
+	//	console.log(arrayHorario);
+	//}
 }
 
 //Busca funcionario pelo id, chamado para alterar funcionario
@@ -347,6 +336,9 @@ function addfuncionario() {
 
 	let nome = $(".FuncionarioNome").val();
 	let whatsapp = $(".FuncionarioWhatsapp").val();
+	let plano = $("#selectPlano").val();
+	console.log("plano selecionado");
+	console.log(plano);
 
     if(validarFuncionario(nome, whatsapp)){
         let funcionario = {
@@ -356,14 +348,17 @@ function addfuncionario() {
                 "id_empresa": dadosempresa.id_empresa
             },
             "servicos": arrayServico,
-            "horarios": arrayHorario,
+            "planoatendimento": {
+                "id_plano": plano
+            }
+            //"horarios": arrayHorario,
         }
 
         let url = "/funcionarios/save";
         fetchPost(url, exibirFuncionarios, funcionario);
 
         arrayServico = [];
-        arrayHorario = [];
+        //arrayHorario = [];
 
         $("#ModalFuncionario").modal('hide');
 
@@ -391,6 +386,7 @@ function updatefuncionario(id) {
 
 	let nome = $(".FuncionarioNome").val();
 	let whatsapp = $(".FuncionarioWhatsapp").val();
+	let plano = $("#selectPlano").val();
 
     if(validarFuncionario(nome, whatsapp)){
         let funcionario = {
@@ -401,14 +397,17 @@ function updatefuncionario(id) {
                 "id_empresa": dadosempresa.id_empresa
             },
             "servicos": arrayServico,
-            "horarios": arrayHorario
+            "planoatendimento": {
+                "id_plano": plano
+            }
+            //"horarios": arrayHorario
         }
 
         let url = "/funcionarios/update/" + id;
         fetchPut(url, exibirFuncionarios, funcionario);
 
         arrayServico = [];
-        arrayHorario = [];
+        //arrayHorario = [];
 
         $("#ModalFuncionario").modal('hide');
 
@@ -424,9 +423,9 @@ function exibirServicosToFuncionario() {
 }
 
 //Puxa todos os horarios cadastrados na empresa
-function exibirHorariosToFuncionario() {
-	let url = "/horarios/empresa/" + dadosempresa.id_empresa;
-	fetchGet(url, viewHorarios);
+function exibirPlanoToFuncionario() {
+	let url = "/planoatendimento/empresa/" + dadosempresa.id_empresa;
+	fetchGet(url, viewPlanos);
 }
 
 function salvarImagem(file, id_funcionario) {
