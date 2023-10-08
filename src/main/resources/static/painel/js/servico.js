@@ -92,7 +92,7 @@ function htmlMostraServicos(servicos) {
 
 			'<div class="col-auto">' +
 			'<label for="descricao" class="form-label">Tempo estimado (Ex.: 30min -> 00:30)</label>' +
-			'<input type="time" id="tempo_servico" class="form-control updateTempoServico' + servico.id_servico + '" value="' + servico.tempoServico + '">' +
+			'<input type="text" id="tempo_servico" class="form-control maskHora updateTempoServico' + servico.id_servico + '" value="' + servico.tempoServico + '">' +
 			'</div>' +
 			'<br>' +
 
@@ -108,6 +108,7 @@ function htmlMostraServicos(servicos) {
 		const pictureImage = document.querySelector(".pictureimgservico" + servico.id_servico);
 		const pictureImageTxt = "Foto...";
 		pictureImage.innerHTML = pictureImageTxt;
+
 
 		
 		if (servico.img != null) {
@@ -150,7 +151,7 @@ function htmlMostraServicos(servicos) {
 	}
 
 	div_main.append('<br>');
-
+    $('.maskHora').mask("99:99");
 	$('.deletebtn').off();
 	$('.magic').off();
 	$('.updatebtn').off();
