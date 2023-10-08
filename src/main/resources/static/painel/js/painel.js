@@ -8,6 +8,7 @@ import { exibirFinanceiro } from "./financeiro.js";
 import { exibirDashboard } from "./dashboard.js";
 import { limparDivReserva } from "./dashboard.js";
 import { getsuporte } from "./suporte.js";
+import { exibirPlanos } from "./planoatendimento.js";
 
 $(document).ready(function() {
 
@@ -34,6 +35,11 @@ $(document).ready(function() {
 
 	$('.a-horarios').on("click", function() {
 		exibirHorarios();
+		limparDivReserva();
+	})
+
+    $('.a-plano').on("click", function() {
+		exibirPlanos();
 		limparDivReserva();
 	})
 

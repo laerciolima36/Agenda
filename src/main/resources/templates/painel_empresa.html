@@ -60,6 +60,11 @@
                     <li class="nav-item">
                         <a class="nav-link a-horarios text-white" href="#" data-bs-dismiss="offcanvas">Horários</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link a-plano text-white" href="#" data-bs-dismiss="offcanvas">Plano de Atendimento</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link a-funcionarios text-white" href="#"
                            data-bs-dismiss="offcanvas">Funcionários</a>
@@ -190,6 +195,63 @@
 
 <!-- Modal Novo Funcionário-->
 <div class="modal fade" id="ModalFuncionario" tabindex="-1" data-bs-backdrop="static"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 titleFuncionario" id="exampleModalLabel">Funcionário</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="col-auto">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" id="nome" class="form-control FuncionarioNome" name="nome">
+                </div>
+                <br>
+                <div class="col-auto">
+                    <label for="whatsapp" class="form-label">Contato (Whatsapp)</label>
+                    <input type="tel" id="whatsapp" class="form-control FuncionarioWhatsapp" name="whatsapp">
+                </div>
+                <div class="col-auto">
+                    <br>
+                    <label class="form-label">Serviços - Selecione os serviços para este
+                        funcionário</label>
+                </div>
+                <div class="col-auto">
+                    <div class="card">
+                        <div class="card-body listServicos">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <br>
+                    <label class="form-label">Plano de Atendimento - Selecione...</label>
+                </div>
+                <div class="col-auto">
+                    <div class="card">
+                        <div class="card-body dropPlano">
+                            <select id="selectPlano" class="form-select" aria-label="Default select example">
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary savefuncionario">Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Novo Plano-->
+<div class="modal fade" id="ModalPlano" tabindex="-1" data-bs-backdrop="static"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
