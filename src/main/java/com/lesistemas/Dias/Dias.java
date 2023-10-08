@@ -19,7 +19,7 @@ public class Dias {
 
     private DiasEnum dia_semana;
 
-    @ManyToMany(mappedBy = "dias")
+    @ManyToMany(mappedBy = "dias", cascade = CascadeType.ALL)
     private Set<Planoatendimento> planoatendimentos = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.MERGE)

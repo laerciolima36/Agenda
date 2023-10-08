@@ -13,6 +13,7 @@ public class PlanoatendimentoService {
 
     @Autowired
     PlanoatendimentoRepository planoatendimentoRepository;
+
     public ResponseEntity<List<Planoatendimento>> findAllPlanos() {
         return ResponseEntity.status(HttpStatus.OK).body(planoatendimentoRepository.findAll());
     }

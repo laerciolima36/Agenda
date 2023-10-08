@@ -44,7 +44,7 @@ function htmlMostraPlanos(result){
     			viewacordion(planoatendimento) +
                 '<br><br>'+
                 '<div class="row text-end">' +
-                '<div class="col">' +
+                '<div class="col"><br>' +
     			//'<button type="button" class="btn btn-secondary btnPlanoAlterar" id="' + planoatendimento.id_plano + '"data-bs-toggle="modal" data-bs-target="#ModalPlano">Alterar</button><span> </span>' +
     			'<button type="button" id="' + planoatendimento.id_plano + '" class="btn btn-danger deletebtn" data-bs-toggle="modal" data-bs-target="#DeleteModal">Apagar</button>' +
     			'</div></div></li></ul></div>');
@@ -54,6 +54,22 @@ function htmlMostraPlanos(result){
     	}
 
     	exibirTodasAsHoras();
+
+    	    $('.deletebtn').off();
+        	$('.magic').off();
+        	$('.btnPlanoNew').off();
+
+        	//metodo para deletar o funcionario
+        	$('.deletebtn').on("click", function() {
+        		$('.delspan').empty();
+        		$('.delspan').append("Plano?");
+        		$('.magic').attr('id', this.id);
+        	});
+
+        	//metodo para deletar o plano
+        	$('.magic').on("click", function() {
+        		deletePlano(this.id);
+        	});
 }
 
 function viewacordion(planoatendimento){
@@ -249,12 +265,17 @@ function addplano() {
     }else{
         alert("Preencha todos os Campos")
     }
-
 }
+
 function validarPlano(nome){
     if(nome != ""){
         return true;
     }else{
         return false;
     }
+}
+
+function deletePlano(id_plano) {
+	let url = "/planoatendimento/delete/" + id_plano;
+	fetchDel(url, exibirPlanos);
 }
