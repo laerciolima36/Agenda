@@ -36,7 +36,7 @@ function htmlMostraPlanos(result){
 
     		listplanos.append('<li class="list-group-item">' +
 
-    			'<div class="row justify-content-center">' +
+    			'<div class="row justify-content-center text-center">' +
 
     			'<h5>' + planoatendimento.nome + '</h5>' +
     			'<br>' +
@@ -45,7 +45,7 @@ function htmlMostraPlanos(result){
                 '<br><br>'+
                 '<div class="row text-end">' +
                 '<div class="col">' +
-    			'<button type="button" class="btn btn-secondary btnPlanoAlterar" id="' + planoatendimento.id_plano + '"data-bs-toggle="modal" data-bs-target="#ModalPlano">Alterar</button><span> </span>' +
+    			//'<button type="button" class="btn btn-secondary btnPlanoAlterar" id="' + planoatendimento.id_plano + '"data-bs-toggle="modal" data-bs-target="#ModalPlano">Alterar</button><span> </span>' +
     			'<button type="button" id="' + planoatendimento.id_plano + '" class="btn btn-danger deletebtn" data-bs-toggle="modal" data-bs-target="#DeleteModal">Apagar</button>' +
     			'</div></div></li></ul></div>');
 
@@ -222,12 +222,39 @@ function mostrarHora(dia, horario){
         let ckhora = dia.find('#'+hora.id_horario);
         ckhora.prop("checked", true);
     }
+}
 
-    //for(let hora of horario){
-      //  dia.append(
-        //     '<div class="form-check form-check-inline">'+
-          //          '<input class="form-check-input checkHorario horario' + hora.id_horario + '" type="checkbox" id="' + hora.id_horario + '" value="option1">'+
-            //        '<label class="form-check-label" for="inlineCheckbox1">'+hora.hora+'</label>'+
-             //'</div>');
-    //}
+$('.savePlano').on("click", function() {
+	addplano();
+});
+
+function addplano() {
+
+	let nome = $(".PlanoNome").val();
+
+    if(validarPlano(nome)){
+        let plano = {
+            "nome": nome,
+            "empresa": {
+                "id_empresa": dadosempresa.id_empresa
+            },
+            "dias": [{ "dia_semana": "SEGUNDA"}, {"dia_semana" : "TERCA"}, {"dia_semana" : "QUARTA"}, {"dia_semana" : "QUINTA"}, {"dia_semana" : "SEXTA"}, {"dia_semana" : "SABADO"}, {"dia_semana" : "DOMINGO"}]
+        }
+
+        let url = "/planoatendimento/add";
+        fetchPost(url, exibirPlanos, plano);
+
+        $("#ModalPlano").modal('hide');
+
+    }else{
+        alert("Preencha todos os Campos")
+    }
+
+}
+function validarPlano(nome){
+    if(nome != ""){
+        return true;
+    }else{
+        return false;
+    }
 }
