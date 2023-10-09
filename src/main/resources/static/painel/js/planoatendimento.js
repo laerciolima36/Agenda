@@ -82,7 +82,7 @@ function viewacordion(planoatendimento){
                                 '</button>'+
                               '</h2>'+
                               '<div id="collapseOne'+planoatendimento.id_plano+'" class="accordion-collapse collapse show" aria-labelledby="headingOne'+planoatendimento.id_plano+'" data-bs-parent="#accordionExampleOne'+planoatendimento.id_plano+'">'+
-                                '<div class="accordion-body horarios segunda'+planoatendimento.id_plano+'">'+
+                                '<div id="'+getIdDia("SEGUNDA", planoatendimento)+'" class="accordion-body horarios segunda'+planoatendimento.id_plano+'">'+
 
 
                                 '</div>'+
@@ -96,7 +96,7 @@ function viewacordion(planoatendimento){
                                 '</button>'+
                               '</h2>'+
                               '<div id="collapseTwo'+planoatendimento.id_plano+'" class="accordion-collapse collapse" aria-labelledby="headingTwo'+planoatendimento.id_plano+'" data-bs-parent="#accordionExampleTwo'+planoatendimento.id_plano+'">'+
-                                '<div class="accordion-body horarios terca'+planoatendimento.id_plano+'">'+
+                                '<div id="'+getIdDia("TERCA", planoatendimento)+'" class="accordion-body horarios terca'+planoatendimento.id_plano+'">'+
 
                                 '</div>'+
                               '</div>'+
@@ -110,7 +110,7 @@ function viewacordion(planoatendimento){
                                 '</button>'+
                               '</h2>'+
                               '<div id="collapseThree'+planoatendimento.id_plano+'" class="accordion-collapse collapse" aria-labelledby="headingThree'+planoatendimento.id_plano+'" data-bs-parent="#accordionExampleThree'+planoatendimento.id_plano+'">'+
-                                '<div class="accordion-body horarios quarta'+planoatendimento.id_plano+'">'+
+                                '<div id="'+getIdDia("QUARTA", planoatendimento)+'" class="accordion-body horarios quarta'+planoatendimento.id_plano+'">'+
 
                                 '</div>'+
                               '</div>'+
@@ -123,7 +123,7 @@ function viewacordion(planoatendimento){
                                   '</button>'+
                                 '</h2>'+
                                 '<div id="collapseFour'+planoatendimento.id_plano+'" class="accordion-collapse collapse" aria-labelledby="headingFour'+planoatendimento.id_plano+'" data-bs-parent="#accordionExampleFour'+planoatendimento.id_plano+'">'+
-                                  '<div class="accordion-body horarios quinta'+planoatendimento.id_plano+'">'+
+                                  '<div id="'+getIdDia("QUINTA", planoatendimento)+'" class="accordion-body horarios quinta'+planoatendimento.id_plano+'">'+
 
                                   '</div>'+
                                 '</div>'+
@@ -136,7 +136,7 @@ function viewacordion(planoatendimento){
                                   '</button>'+
                                 '</h2>'+
                                 '<div id="collapseFive'+planoatendimento.id_plano+'" class="accordion-collapse collapse" aria-labelledby="headingFive'+planoatendimento.id_plano+'" data-bs-parent="#accordionExampleFive'+planoatendimento.id_plano+'">'+
-                                  '<div class="accordion-body horarios sexta'+planoatendimento.id_plano+'">'+
+                                  '<div id="'+getIdDia("SEXTA", planoatendimento)+'" class="accordion-body horarios sexta'+planoatendimento.id_plano+'">'+
 
                                   '</div>'+
                                 '</div>'+
@@ -149,7 +149,7 @@ function viewacordion(planoatendimento){
                                   '</button>'+
                                 '</h2>'+
                                 '<div id="collapseSix'+planoatendimento.id_plano+'" class="accordion-collapse collapse" aria-labelledby="headingSix'+planoatendimento.id_plano+'" data-bs-parent="#accordionExampleSix'+planoatendimento.id_plano+'">'+
-                                  '<div class="accordion-body horarios sabado'+planoatendimento.id_plano+'">'+
+                                  '<div id="'+getIdDia("SABADO", planoatendimento)+'" class="accordion-body horarios sabado'+planoatendimento.id_plano+'">'+
 
                                   '</div>'+
                                 '</div>'+
@@ -162,7 +162,7 @@ function viewacordion(planoatendimento){
                                   '</button>'+
                                 '</h2>'+
                                 '<div id="collapseSeven'+planoatendimento.id_plano+'" class="accordion-collapse collapse" aria-labelledby="headingSeven'+planoatendimento.id_plano+'" data-bs-parent="#accordionExampleSeven'+planoatendimento.id_plano+'">'+
-                                  '<div class="accordion-body horarios domingo'+planoatendimento.id_plano+'">'+
+                                  '<div id="'+getIdDia("DOMINGO", planoatendimento)+'" class="accordion-body horarios domingo'+planoatendimento.id_plano+'">'+
 
                                   '</div>'+
                                 '</div>'+
@@ -171,6 +171,36 @@ function viewacordion(planoatendimento){
                           '</div><br>';
 
     return acordion;
+}
+
+function getIdDia(diacomparado, planoatendimento){
+
+            let diasdoplano = planoatendimento.dias;
+
+            for(var dia of diasdoplano){
+
+                    if(dia.dia_semana == diacomparado){
+                        return dia.id_dia;
+                    }
+                    if(dia.dia_semana == diacomparado){
+                        return dia.id_dia;
+                    }
+                    if(dia.dia_semana == diacomparado){
+                        return dia.id_dia;
+                    }
+                    if(dia.dia_semana == diacomparado){
+                        return dia.id_dia;
+                    }
+                    if(dia.dia_semana == diacomparado){
+                        return dia.id_dia;
+                    }
+                    if(dia.dia_semana == diacomparado){
+                        return dia.id_dia;
+                    }
+                    if(dia.dia_semana == diacomparado){
+                        return dia.id_dia;
+                    }
+            }
 }
 
 function exibirTodasAsHoras(){
