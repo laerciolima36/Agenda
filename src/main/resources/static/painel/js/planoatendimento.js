@@ -2,6 +2,7 @@ import { fetchGet } from "./api.js";
 import { fetchPost } from "./api.js";
 import { fetchDel } from "./api.js";
 import { fetchPut } from "./api.js";
+import { liveToast } from "./api.js";
 import { dadosempresa } from "./empresa.js";
 
 //variaveis
@@ -220,7 +221,48 @@ function htmlTodasAsHoras(horarios){ //mostra todas as horas cadastradas da empr
                  '</div>');
      }
 
+     $(".checkHorario").on("click", function() {
+     		let ck = this;
+     		let idHora = ck.id;
+     		console.log("ID HORA: " + idHora);
+
+     		let idDia = $(ck).parent().parent().attr("id");
+     		console.log("ID DIA: " + idDia);
+
+            if(idDia == "undefined" || idHora == "undefined"){
+                alert('Problemas com o dia e a hora, contate o Suporte');
+                ck.checked = false;
+            }else{
+                   if (ck.checked == true) {
+                        addHoraDia(idDia, idHora);
+                   }
+
+                   if (ck.checked == false) {
+                        removeHoraDia(idDia, idHora);
+                   }
+            }
+
+     	});
+
      viewHorariosDoPlano();
+}
+
+function addHoraDia(idDia, idHora){
+     let url = "/dia/"+idDia+"/hora/"+idHora;
+     fetchPost(url, messageAddHoraDia, null);
+}
+
+function messageAddHoraDia(){
+    liveToast("Hora Adicionada com Sucesso!");
+}
+
+function removeHoraDia(idDia, idHora){
+     let url = "/dia/"+idDia+"/hora/"+idHora;
+     fetchDel(url, messageremoveHoraDia);
+}
+
+function messageremoveHoraDia(){
+    liveToast("Hora Removida com Sucesso!");
 }
 
 function viewHorariosDoPlano(){ //verifica quais horas estão naquele plano e marca

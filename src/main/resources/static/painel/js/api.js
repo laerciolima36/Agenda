@@ -142,9 +142,12 @@ export function fetchPostImage(url, dados, file) {
 		.catch(erro => console.log("Erro na solicitação fetchPostImage " + erro));
 }
 
-export function liveToast() {
+export function liveToast(mensagem) {
 	const toastLiveExample = document.getElementById('liveToast')
 	const toast = new bootstrap.Toast(toastLiveExample)
+	const texto = $(".toast-body")
+	texto.empty();
+	texto.append(mensagem);
 	toast.show()
 }
 
