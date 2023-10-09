@@ -243,7 +243,6 @@ function htmlTodasAsHoras(horarios){ //mostra todas as horas cadastradas da empr
             }
 
      	});
-
      viewHorariosDoPlano();
 }
 
