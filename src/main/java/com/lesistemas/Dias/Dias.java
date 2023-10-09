@@ -27,6 +27,13 @@ public class Dias {
     @OrderBy("hora")
     private Set<Horario> horario = new HashSet<>();
 
+    public Dias(){}
+
+    public Dias(Long id_dia, DiasEnum dia_semana) {
+        this.id_dia = id_dia;
+        this.dia_semana = dia_semana;
+    }
+
     public Long getId_dia() {
         return id_dia;
     }

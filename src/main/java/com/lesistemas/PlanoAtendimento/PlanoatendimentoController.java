@@ -1,13 +1,19 @@
 package com.lesistemas.PlanoAtendimento;
 
+import com.lesistemas.Dias.Dias;
+import com.lesistemas.Dias.DiasEnum;
 import com.lesistemas.Servico.Servico;
+import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class PlanoatendimentoController {
@@ -22,7 +28,8 @@ public class PlanoatendimentoController {
 
     @GetMapping(value = "/planoatendimento/{id}")
     public ResponseEntity<Planoatendimento> getPlanoById(@PathVariable("id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(planoatendimentoService.findById(id));
+        Optional<Planoatendimento> plano = planoatendimentoService.findById(id);
+        return plano.map(planoatendimento -> ResponseEntity.status(HttpStatus.OK).body(planoatendimento)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
 
     @GetMapping(value = "/planoatendimento/empresa/{idEmpresa}")
@@ -36,13 +43,11 @@ public class PlanoatendimentoController {
 
     @DeleteMapping("/planoatendimento/delete/{id}")
     public ResponseEntity<Object> deletePlano(@PathVariable(value = "id") Long id){
-        Planoatendimento planoatendimento = planoatendimentoService.findById(id);
+        Optional<Planoatendimento> plano = planoatendimentoService.findById(id);
 
-        if (planoatendimento == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plano de atendimento não Encontrado!");
-        }
-
-        return planoatendimentoService.delete(planoatendimento);
+        return plano.map(planoatendimento ->
+                planoatendimentoService.delete(planoatendimento))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Plano de atendimento não Encontrado!"));
     }
 
     @PutMapping("/planoatendimento/update/{id}")
