@@ -36,20 +36,18 @@ function exibirSection1() {
 	
 	section1.append(
 
-		'<div class="container-fluid bg-dark text-light text-center pt-4">' +
+		'<div class="container p-0 justify-content-center text-center">' +
+		'	<img src="' + logo + '" class="img-fluid" alt="..."  style="max-height: 650px">' +
+		'</div><br>'+
 
-		'		<figure class="figure p-4">' +
-		'			<img src="' + logo + '" ' +
-		'				class="figure-img img-fluid rounded img-thumbnail" alt="..."  style="max-width: 70%;">' +
-		'			<figcaption class="figure-caption"><span>'+empresa.nome+'</span></figcaption>' +
-		'		</figure>' +
+        '<div class="container text-center">' +
+        '<button class="btn btn-outline-dark btn-lg">Agendar Meu Serviço</button>' +
 
-		'			<div class="row pb-4">' +
-		'				<div class="col">' +
-		'				<button type="button" class="btn btn-warning btn-agendar">Agendar Meu Serviço <i class="fa-solid fa-calendar-check"></i></button>' +
-		'				</div>' +
-		'			</div>' +
-		'		</div>');
+        //'<div class="box-pulse">' +
+        //'	<a class="botao-pulse btn-agendar">Agenda Aí</a>' +
+        //'</div>'+
+        '</div>'
+		);
 
 	$('.btn-agendar').on("click", function() {
 		carregarEtapa1();
@@ -71,10 +69,13 @@ function htmlMostraServicos(servicos) {
 
 	section2.append(
 
-		'<div class="container-fluid bg-dark text-light justify-content-center">' +
+		'<div class="container-fluid justify-content-center">' +
 		'<br>' +
-		'<p class="fs-6">Nossos Serviços:</p>' +
+
+		'<div class="">'+
+		'<p class="fs-5">Nossos Serviços:</p>' +
 		'<div class="row-auto text-center listServicos">' +
+        '</div>' +
 		'</div>' +
 		'<br>' +
 		'</div>'
@@ -84,7 +85,7 @@ function htmlMostraServicos(servicos) {
 	listServicos.empty();
 
 	for (var servico of servicos) {
-		listServicos.append('<span><i class="fa-solid fa-check pe-1"></i>' + servico.nome + '</span><br>');
+		listServicos.append('<span class="fs-5 fw-semibold"><i class="fa-solid fa-check pe-1"></i>' + servico.nome + '</span><br>');
 	}
 }
 
@@ -94,15 +95,25 @@ function exibirSection3() {
 
 	section3.append(
 
-		'<div class="container-fluid bg-dark justify-content-center text-center">' +
+	'<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">' +
+      '<div class="carousel-inner imagens">' +
+        '<div class="carousel-item active">' +
+          '<img src="https://agendaimgbucket.s3.sa-east-1.amazonaws.com/laercio/imagem1" class="d-block w-100" alt="...">' +
+        '</div>' +
+      '</div>' +
+      '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">' +
+        '<span class="carousel-control-prev-icon" aria-hidden="true"></span>' +
+        '<span class="visually-hidden">Previous</span>' +
+      '</button>' +
+      '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">' +
+        '<span class="carousel-control-next-icon" aria-hidden="true"></span>' +
+        '<span class="visually-hidden">Next</span>' +
+      '</button>' +
+    '</div>' +
 
-		'<div class="imagens">' +
-		//imagens
-		'</div>' +
 
-		'</div>' +
 
-		'<footer class="bg-dark text-light text-center">' +
+		'<footer class="text-center">' +
 		'<div class="container-fluid py-3">' +
 
 		'<div class="row">' +
@@ -123,38 +134,30 @@ function exibirSection3() {
 		'</div>' +
 
 		'<div class="text-center" style="background-color: #333; padding: 20px;">' +
-		'	&copy 2023 Copyright: <a href="#">Agenda Aí</a>' +
+		'<a href="/"><img style="max-height: 35px" src="/imagens/logomarca-v1-iconame.png" alt="logo" class="img-fluid"></a>' +
+		//'	&copy 2023 Copyright: <a href="#">Agenda Aí</a>' +
 		'</div>' +
 		'</footer >');
 
-	let imagens = $(".imagens");
-	imagens.empty();
-
-	let linhas = empresa.imagem.length / 2;
-	console.log("linhas: " + linhas);
-
-	for (var i = 0; i < linhas; i++) {
-		imagens.append('<div class="row justify-content-around p-3 linha' + i + '">' +
-			'</div>');
-	}
-
-	let add = 0;
-	let controle = 0;
-
+	let divimagens = $(".imagens");
+	divimagens.empty();
+    let first = 1;
 	for (var imagem of empresa.imagem) {
-		let linha = $(".linha" + controle);
 
-		if (imagem.islogo != true) {
-			linha.append('<div class="col">' +
-				'<img src="' + imagem.url + "?" + new Date().getTime() + '" class="img-thumbnail" alt="">' +
-				'</div>');
-			add++;
+        if (imagem.islogo != true && first > 1) {
+            divimagens.append( '<div class="carousel-item">' +
+                                    '<img src="' + imagem.url + "?" + new Date().getTime() + '" class="d-block w-100" alt="...">' +
+                               '</div>' +'<div class="col">');
+        }
+
+		if (imagem.islogo != true && first == 1) {
+			divimagens.append( '<div class="carousel-item active">' +
+                                   '<img src="' + imagem.url + "?" + new Date().getTime() + '" class="d-block w-100" alt="...">' +
+                               '</div>' +'<div class="col">');
+            first = 2;
 		}
 
-		if (add == 2) {
-			controle++;
-			add = 0;
-		}
+
 	}
 }
 

@@ -3,7 +3,6 @@ package com.lesistemas.PlanoAtendimento;
 import com.lesistemas.Dias.Dias;
 import com.lesistemas.Dias.DiasEnum;
 import com.lesistemas.Dias.DiasRepository;
-import com.lesistemas.Dias.DiasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -26,7 +25,7 @@ public class PlanoPadrao {
     public void criaPlanoPadrao(){
         Optional<Planoatendimento> plano = planoatendimentoService.findById(1L);
 
-        plano.ifPresentOrElse(value -> System.out.println("Plano padrão já Existe! " + value.toString()),
+        plano.ifPresentOrElse(value -> System.out.println("Plano padrão já Existe!"),
                 this::salvarPlanoPadrao);
     }
 
