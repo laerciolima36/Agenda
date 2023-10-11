@@ -72,8 +72,12 @@ function htmlMostraServicos(servicos) {
 		'<div class="container-fluid justify-content-center">' +
 		'<br>' +
 
-		'<div class="">'+
-		'<p class="fs-5">Nossos Serviços:</p>' +
+		'<div class="shadow-sm p-3 mb-5 bg-body-tertiary rounded">'+
+		'<i class="fa-solid fa-bars fa-lg"></i>'+
+
+
+
+		'<p class="fs-3">Serviços</p>' +
 		'<div class="row-auto text-center listServicos">' +
         '</div>' +
 		'</div>' +
