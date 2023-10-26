@@ -78,6 +78,6 @@ public class CadastroService {
 			}else {
 				return false;
 				//"Usuário já Existe, por favor tente outro usuário";
-		}
+			}
 	}
 }
