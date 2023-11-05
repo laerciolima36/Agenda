@@ -104,13 +104,15 @@ function htmlMostraFuncionarios(funcionarios) {
 		}
 
 		listFuncionarios.append(
-			'<li class="list-group-item btn-funcionario list-group-item-action d-flex justify-content-between" aria-current="true" id="'+funcionario.id_funcionario+'">' + //active usar como class para ativar campo
-			'					<div class="d-flex justify-content-start align-items-center"><img' +
+			'<li class="list-group-item btn-funcionario list-group-item-action" aria-current="true" id="'+funcionario.id_funcionario+'">' + //active usar como class para ativar campo
+			'					<div class="d-flex justify-content-between"><div class="d-flex justify-content-start align-items-center"><img' +
 			'							src="'+urlImagemFuncionario + "?" + new Date().getTime()+'"' +
 			'							class="figure-img img-fluid rounded img-thumbnail me-2" alt="..." style="max-width: 20%;">' +
 			'						<strong>'+ funcionario.nome +'</strong>' +
 			'					</div>' +
-			'					<div class="d-flex align-items-center"><i class="fa-solid fa-arrow-right"></i></div>' +
+			'					<div class="d-flex align-items-center"><i class="fa-solid fa-arrow-right"></i></div></div>' +
+		//	'					<div class="text-start"><span style="font-size: 8px">Atende na: '+getDias(funcionario)+'</div>' +
+		//	'					<div class="text-start"><span style="font-size: 8px">Serviços: '+getServicos(funcionario)+'</div>' +
 			'				</li>');
 	}
 
@@ -132,4 +134,36 @@ function htmlMostraFuncionarios(funcionarios) {
 //SECTION 3
 function exibirsection3() {
 	section3.empty();
+}
+
+function getDias(funcionario){
+
+    let dias;
+    let result = '';
+
+        if(funcionario.planoatendimento.dias != null){
+            dias = funcionario.planoatendimento.dias;
+        }
+
+        for(var dia of dias){
+            result += dia.dia_semana + ' ';
+        }
+
+        return result.toLowerCase();
+}
+
+function getServicos(funcionario){
+
+    let servicos;
+    let result = '';
+
+        if(funcionario.servicos != null){
+            servicos = funcionario.servicos;
+        }
+
+        for(var servico of servicos){
+            result += servico.nome + ' - ';
+        }
+
+        return result;
 }

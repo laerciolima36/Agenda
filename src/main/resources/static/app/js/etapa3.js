@@ -12,6 +12,7 @@ import { logo } from "./empresa_from_cliente.js";
 
 
 let dataAtual = new Date().toLocaleDateString('pt-BR');
+let diaAtual = new Date().getDay();
 
 
 export function carregarEtapa3(FuncionarioSelecionado) {
@@ -40,7 +41,7 @@ function exibirsection1(FuncionarioSelecionado) {
 
 function exibirsection2(FuncionarioSelecionado) {
 
-	var horarios = FuncionarioSelecionado[0].horarios;
+
 
 	section2.append(
 		'<div class="container-fluid justify-content-center text-center">' +
@@ -98,35 +99,32 @@ function exibirsection2(FuncionarioSelecionado) {
     	carregarEtapa1();
     });
 
-	let listHoras = $(".listHoras");
-	listHoras.empty();
+    $("#calendario").datepicker({
+    		dateFormat: 'dd/mm/yy',
+    		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+    		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+    		dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+    		monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    		monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    		//beforeShowDay: $.datepicker.noSunday,
+    		showOtherMonths: true,
+    		selectOtherMonths: true,
+    		//showAnim: "slide",
 
-	for (var hora of horarios) {
-		listHoras.append(
-			'			<li class="list-group-item btn-horario d-flex justify-content-between hora' + hora.id_horario + '" aria-current="true" id="' + hora.id_horario + '">' +
-			'					<div class="d-flex justify-content-start align-items-center">' +
-			'					<i class="fa-solid fa-clock me-2"></i>' +
-			'						<div class="text-start">' +
-			'							<strong>' + hora.hora + '</strong><br>' +
-			'						</div>' +
-			'					</div>' +
-			'					<div class="d-flex align-items-center"><i class="fa-solid fa-arrow-right"></i></div>' +
-			'				</li>');
-	}
 
-	$('.btn-horario').on("click", function() {
-		$("li").removeClass("active");
+    	}).datepicker("setDate", new Date()).on("change", function() {
+    		//this é o elemento input, o valor seria: this.value
+    		$("li").removeClass("disabled");
+    		resumoReserva.data = this.value;
+    		let dia = $("#calendario").datepicker("getDate").getDay();
+    		console.log(dia);
+    		resumoReserva.exibirResumo();
+    		getHorasDoDia(FuncionarioSelecionado[0], dia);
+    		consultarHorasDisponiveis(this.value, FuncionarioSelecionado[0].id_funcionario);
+    	});;;
 
-		$("#" + this.id).addClass("active");
 
-		let horaSelecionada = horarios.filter(horarios => horarios.id_horario == this.id);
-
-		//---------------------- Ajustar Codigo -----------------------------
-		resumoReserva.id_hora = this.id;
-		resumoReserva.hora = horaSelecionada[0].hora;
-		resumoReserva.exibirResumo();
-		//-------------------------------------------------------------------
-	});
+    getHorasDoDia(FuncionarioSelecionado[0], diaAtual);
 
 	$('.btn-continuar').on("click", function() {
 		if (resumoReserva.id_hora == undefined || resumoReserva.hora == "Selecione...") {
@@ -136,26 +134,7 @@ function exibirsection2(FuncionarioSelecionado) {
 		}
 	});
 
-	$("#calendario").datepicker({
-		dateFormat: 'dd/mm/yy',
-		dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
-		dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-		dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-		monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-		monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-		//beforeShowDay: $.datepicker.noSunday,
-		showOtherMonths: true,
-		selectOtherMonths: true,
-		//showAnim: "slide",
 
-
-	}).datepicker("setDate", new Date()).on("change", function() {
-		//this é o elemento input, o valor seria: this.value
-		$("li").removeClass("disabled");
-		resumoReserva.data = this.value;
-		resumoReserva.exibirResumo();
-		consultarHorasDisponiveis(this.value, FuncionarioSelecionado[0].id_funcionario);
-	});;;
 }
 
 function exibirsection3() {
@@ -174,4 +153,74 @@ function mostrarHorasDisponiveis(reservas) {
 		$(".hora" + id_horario).addClass("disabled");
 	}
 	console.log(reservas);
+}
+
+function getHorasDoDia(funcionario, dia){
+
+    let diaSemana = 0;
+
+    switch(dia){
+        case 0:
+            diaSemana = funcionario.planoatendimento.dias.filter(dia => dia.dia_semana == 'DOMINGO');
+            console.log(diaSemana);
+            break;
+        case 1:
+            diaSemana = funcionario.planoatendimento.dias.filter(dia => dia.dia_semana == 'SEGUNDA');
+            console.log(diaSemana);
+            break;
+        case 2:
+            diaSemana = funcionario.planoatendimento.dias.filter(dia => dia.dia_semana == 'TERCA');
+            console.log(diaSemana);
+            break;
+        case 3:
+            diaSemana = funcionario.planoatendimento.dias.filter(dia => dia.dia_semana == 'QUARTA');
+            console.log(diaSemana);
+            break;
+        case 4:
+            diaSemana = funcionario.planoatendimento.dias.filter(dia => dia.dia_semana == 'QUINTA');
+            console.log(diaSemana);
+            break;
+        case 5:
+            diaSemana = funcionario.planoatendimento.dias.filter(dia => dia.dia_semana == 'SEXTA');
+            console.log(diaSemana);
+            break;
+        case 6:
+            diaSemana = funcionario.planoatendimento.dias.filter(dia => dia.dia_semana == 'SABADO');
+            console.log(diaSemana);
+            break;
+        default:
+            console.log("Erro ao identificar o dia da semana");
+    }
+
+        let listHoras = $(".listHoras");
+    	listHoras.empty();
+
+    	var horarios = diaSemana[0].horario;
+
+    	for (var hora of horarios) {
+        		listHoras.append(
+        			'			<li class="list-group-item btn-horario d-flex justify-content-between hora' + hora.id_horario + '" aria-current="true" id="' + hora.id_horario + '">' +
+        			'					<div class="d-flex justify-content-start align-items-center">' +
+        			'					<i class="fa-solid fa-clock me-2"></i>' +
+        			'						<div class="text-start">' +
+        			'							<strong>' + hora.hora + '</strong><br>' +
+        			'						</div>' +
+        			'					</div>' +
+        			'					<div class="d-flex align-items-center"><i class="fa-solid fa-arrow-right"></i></div>' +
+        			'				</li>');
+        	}
+
+        $('.btn-horario').on("click", function() {
+        		$("li").removeClass("active");
+
+        		$("#" + this.id).addClass("active");
+
+        		let horaSelecionada = horarios.filter(horarios => horarios.id_horario == this.id);
+
+        		//---------------------- Ajustar Codigo -----------------------------
+        		resumoReserva.id_hora = this.id;
+        		resumoReserva.hora = horaSelecionada[0].hora;
+        		resumoReserva.exibirResumo();
+        		//-------------------------------------------------------------------
+        	});
 }
