@@ -131,7 +131,7 @@ function mostrarReserva(reserva) {
 		'<div class="card-body text-center">' +
 		'<h5 class="card-title">' + reserva.servico.nome + '</h5>' +
 		'<h5 class="card-text lh-sm">Hora: ' + reserva.horario.hora + '</h5>' +
-		'<p class="card-text lh-sm">Contato: ' + reserva.zapcliente + '</p>' +
+		'<p class="card-text lh-sm">Contato: <a href="https://api.whatsapp.com/send?phone=55' + reserva.zapcliente + '">' + reserva.zapcliente + ' </a><i class="fa-brands fa-whatsapp"></i></p>' +
 		'<p class="card-text lh-sm">Valor: R$ ' + reserva.servico.preco + '</p>' +
 		'<div class="container rounded p-1 d-flex justify-content-center">' +
 		'<button class="btn btn-danger btn-cancelar border border-2 me-5" id="' + reserva.id_reserva + '">Cancelado</button>' +
@@ -152,7 +152,7 @@ function mostrarReservaFinalizada(reserva) {
 		'<div class="card-body text-center">' +
 		'<h5 class="card-title">' + reserva.servico.nome + '</h5>' +
 		'<h5 class="card-text lh-sm">Hora: ' + reserva.horario.hora + '</h5>' +
-		'<p class="card-text lh-sm">Contato: ' + reserva.zapcliente + '</p>' +
+		'<p class="card-text lh-sm">Contato: <a href="https://api.whatsapp.com/send?phone=55' + reserva.zapcliente + '">' + reserva.zapcliente + ' </a><i class="fa-brands fa-whatsapp"></i></p>' +
 		'<p class="card-text lh-sm">Valor: R$ ' + reserva.servico.preco + '</p>' +
 		'</div>' +
 		'<div class="card-footer">' +
@@ -169,7 +169,7 @@ function mostrarReservaCancelada(reserva) {
 		'<div class="card-body text-center">' +
 		'<h5 class="card-title">' + reserva.servico.nome + '</h5>' +
 		'<h5 class="card-text lh-sm">Hora: ' + reserva.horario.hora + '</h5>' +
-		'<p class="card-text lh-sm">Contato: ' + reserva.zapcliente + '</p>' +
+		'<p class="card-text lh-sm">Contato: <a href="https://api.whatsapp.com/send?phone=55' + reserva.zapcliente + '">' + reserva.zapcliente + ' </a><i class="fa-brands fa-whatsapp"></i></p>' +
 		'<p class="card-text lh-sm">Valor: R$ ' + reserva.servico.preco + '</p>' +
 		'</div>' +
 		'<div class="card-footer">' +
