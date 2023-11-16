@@ -50,6 +50,7 @@ export function fetchPost(url, metodo, dados) {
 }
 
 export function fetchPut(url, metodo, dados) {
+    displayLoading();
 
 	fetch(url, {
 		method: "PUT",
@@ -57,7 +58,10 @@ export function fetchPut(url, metodo, dados) {
 		body: JSON.stringify(dados)
 	})
 		.then(response => response.json())
-		.then(response => metodo(response))
+		.then(response => {
+               hideLoading()
+               metodo(response)
+        })
 		.catch(erro => console.log("Erro na solicitação PUT " + erro));
 }
 

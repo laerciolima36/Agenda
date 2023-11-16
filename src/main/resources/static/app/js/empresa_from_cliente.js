@@ -41,7 +41,7 @@ function exibirSection1() {
 		'</div><br>'+
 
         '<div class="container text-center">' +
-        '<button class="btn btn-outline-dark btn-lg btn-agendar">Agendar Meu Serviço</button>' +
+        '<button class="btn btn-primary btn-agendar">Agendar Meu Serviço</button>' +
 
         '</div>'
 		);
@@ -81,7 +81,7 @@ function htmlMostraServicos(servicos) {
 
 	for (var servico of servicos) {
 		listServicos.append('<div class="d-flex justify-content-center m-2">' +
-                                     '<div class="rounded shadow w-75 d-flex align-items-center justify-content-center border bg-white border-dark" style="height: 45px;">' +
+                                     '<div class="rounded shadow w-75 d-flex align-items-center justify-content-center border bg-white border-dark text-center p-3" style="height: auto;">' +
                                            '<span style="font-family: Courier New, Courier, monospace;" class="fs-5">' + servico.nome + '</span>' +
                                     '</div>' +
                                  '</div>');
@@ -126,7 +126,7 @@ function exibirSection3() {
 '    </div>' +
 
 '    <div class="d-flex justify-content-center m-2">' +
-'        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63574.854622872735!2d-37.38283964910127!3d-5.195149984222221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ba06e074d5ce0b%3A0x46694ffe5df19ebe!2zTW9zc29yw7MsIFJO!5e0!3m2!1spt-BR!2sbr!4v1697040408851!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' +
+//'        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63574.854622872735!2d-37.38283964910127!3d-5.195149984222221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ba06e074d5ce0b%3A0x46694ffe5df19ebe!2zTW9zc29yw7MsIFJO!5e0!3m2!1spt-BR!2sbr!4v1697040408851!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>' +
 '    </div>' +
 '</div>' +
 

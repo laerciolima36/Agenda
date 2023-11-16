@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ServicosRepository extends JpaRepository<Servico, Long>{
 	
-	@Query(value = "SELECT * FROM servicos where id_empresa = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM servicos where id_empresa = ?1 order by id_servico", nativeQuery = true)
 	List<Servico> findByIdEmpresa(Long id);
 
 	@Modifying

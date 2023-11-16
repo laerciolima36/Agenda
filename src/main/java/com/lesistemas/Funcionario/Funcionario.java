@@ -39,6 +39,7 @@ public class Funcionario {
 	private Planoatendimento planoatendimento;
 
 	@ManyToMany()
+	@OrderBy("id_servico ASC")
 	@JoinTable(name = "funcionarios_servicos", joinColumns = @JoinColumn(name = "fk_funcionario"), inverseJoinColumns = @JoinColumn(name = "fk_servico"))
 	private Set<Servico> servicos = new HashSet<>();
 	
