@@ -149,8 +149,10 @@ function consultarHorasDisponiveis(dataSelecionada, id_funcionario) {
 function mostrarHorasDisponiveis(reservas) {
 
 	for (var reserva of reservas) {
-		let id_horario = reserva.horario.id_horario;
-		$(".hora" + id_horario).addClass("disabled");
+	    if(reserva.status != "CANCELADO"){
+	        let id_horario = reserva.horario.id_horario;
+            $(".hora" + id_horario).addClass("disabled");
+	    }
 	}
 	console.log(reservas);
 }
