@@ -55,15 +55,15 @@ public class EmpresaService {
 	public ResponseEntity<Object> updateEmpresa(Long idEmpresa, Empresa empresa){
 		Empresa empAtualizada = this.findById(idEmpresa);
 		
-		if(!LinkEmpresaDisponivel(empresa.getLink())) {
-			return ResponseEntity.status(HttpStatus.OK).body("Link já Existe, por favor tente outro link");
-		}
+		//if(!LinkEmpresaDisponivel(empresa.getLink())) {
+		//	return ResponseEntity.status(HttpStatus.OK).body("Link já Existe, por favor tente outro link");
+		//}
 		
 		if(empresa != null) {
 			empAtualizada.setNome(empresa.getNome());
 			empAtualizada.setContato(empresa.getContato());
 			empAtualizada.setRedesocial(empresa.getRedesocial().toLowerCase().replaceAll(" ", "").replaceAll("@", ""));
-			empAtualizada.setLink(empresa.getLink().toLowerCase().replaceAll(" ", ""));
+			//empAtualizada.setLink(empresa.getLink().toLowerCase().replaceAll(" ", ""));
 			empAtualizada.setEndereco(empresa.getEndereco());
 			
 			return ResponseEntity.status(HttpStatus.OK).body(this.save(empAtualizada));

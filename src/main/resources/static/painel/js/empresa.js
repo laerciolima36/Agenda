@@ -139,7 +139,7 @@ function htmlEditarEmpresa() {
 		'								<span>https://agendaai.com/app/</span>' +
 		'							</div>' +
 		'							<div class="col">' +
-		'                     				<input type="text" class="form-control" id="link" placeholder="seulink" required>' +
+		'                     				<input type="text" class="form-control" id="link" placeholder="seulink" required readonly>' +
 		'									<div class="valid-feedback">Link Disponivel!</div>' +
 		'									<div class="invalid-feedback">Link Indisponivel!</div>' +
 		'                 			</div>' +
@@ -355,7 +355,7 @@ function viewDados() {
 		htmlEmpresa(dadosempresa);
 	})
 
-	validaLink();
+	//validaLink();
 }
 
 function salvarEmpresa() {
@@ -380,11 +380,11 @@ function validarDados() {
 	uf = $("#uf").val();
 
 	if (semCamposEmBranco(idempresa, nome, contato, link, redesocial, idendereco, logradouro, numero, cep, cidade, uf)) {
-		if (linkcheck) {
+		//if (linkcheck) {
 			preparaJson(idempresa, nome, contato, link, redesocial, idendereco, logradouro, numero, cep, cidade, uf);
-		} else {
-			alert("Link Indisponivel, tente outro Link!")
-		}
+		//} else {
+		//	alert("Link Indisponivel, tente outro Link!")
+		//}
 	}
 }
 
@@ -419,7 +419,6 @@ function preparaJson(idempresa, nome, contato, link, redesocial, idendereco, log
 
 	let url = "/empresa/update/" + dadosempresa.id_empresa;
 	fetchPut(url, updateDadosEmpresa, dados);
-
 }
 
 function scriptImage() {
