@@ -141,7 +141,7 @@ function updatehorario(id) {
         let url = "/horarios/update/" + id;
         fetchPut(url, exibirHorarios, horario);
 
-        $("ModalAlteraHorario"+id).modal('hide');
+        $("#ModalAlteraHorario"+id).modal('hide');
     }else{
        alert("Preencha todos os Campos")
     }

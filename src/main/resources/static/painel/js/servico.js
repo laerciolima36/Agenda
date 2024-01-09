@@ -80,7 +80,7 @@ function htmlMostraServicos(servicos) {
 
 			'<div class="col-auto">' +
 			'<label for="nome" class="form-label">Valor do Serviço R$</label>' +
-			'<input type="text" class="form-control updatePreco' + servico.id_servico + '" id="preco" value="' + servico.preco + '">' +
+			'<input type="text" class="form-control dinheiro updatePreco' + servico.id_servico + '" id="preco" value="' + servico.preco + '">' +
 			'</div>' +
 			'<br>' +
 
