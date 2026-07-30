@@ -40,7 +40,7 @@ function htmlEmpresa(dadosempresa) {
 		dadosempresa.endereco.uf +
 		' CEP: ' + dadosempresa.endereco.cep +
 		'<p class="card-text lh-sm">Instagram: @<a href="http://instagram.com/' + dadosempresa.redesocial + '" target="_blank" rel="noopener noreferrer">' + dadosempresa.redesocial + '</a>' +
-		'<p class="card-text lh-sm">Link da sua Empresa: <a href="https://agendaai.automationcode.com.br/app/' + dadosempresa.link + '">http://agendaai.com/app/' + dadosempresa.link + '</a></div></div>');
+		'<p class="card-text lh-sm">Link da sua Empresa: <a href="https://agendaai.automationcode.com.br/app/' + dadosempresa.link + '">http://agendaai.automationcode.com.br/app/' + dadosempresa.link + '</a></div></div>');
 
 
 	div_main.append(htmlMostraImagens);
