@@ -136,7 +136,7 @@ function htmlEditarEmpresa() {
 		'                     <label for="link" class="form-label"><i class="fa-solid fa-link"></i> Link para sua Empresa:</label>' +
 		'						<div class="d-flex align-items-top">' +
 		'							<div class="col-auto">' +
-		'								<span>https://agendaai.com/app/</span>' +
+		'								<span>https://agendaai.automationcode.com.br/app/</span>' +
 		'							</div>' +
 		'							<div class="col">' +
 		'                     				<input type="text" class="form-control" id="link" placeholder="seulink" required>' +
@@ -280,7 +280,7 @@ function carregarImages(dados) {
 		if (imagem.tipoImagem == "logo") {
 			const pictureImage = document.querySelector(".logo");
 			const img = document.createElement("img");
-			img.src = imagem.url + "?" + new Date().getTime();
+			img.src = imagem.url + "?v=" + new Date().getTime();
 			img.classList.add("picture__img");
 
 			pictureImage.innerHTML = "";
@@ -290,7 +290,7 @@ function carregarImages(dados) {
 		if (imagem.tipoImagem == "imagem1") {
 			const pictureImage = document.querySelector(".picture__image1");
 			const img = document.createElement("img");
-			img.src = imagem.url + "?" + new Date().getTime();
+			img.src = imagem.url + "?v=" + new Date().getTime();
 			img.classList.add("picture__img");
 
 			pictureImage.innerHTML = "";
@@ -300,7 +300,7 @@ function carregarImages(dados) {
 		if (imagem.tipoImagem == "imagem2") {
 			const pictureImage = document.querySelector(".picture__image2");
 			const img = document.createElement("img");
-			img.src = imagem.url + "?" + new Date().getTime();
+			img.src = imagem.url + "?v=" + new Date().getTime();
 			img.classList.add("picture__img");
 
 			pictureImage.innerHTML = "";
@@ -310,7 +310,7 @@ function carregarImages(dados) {
 		if (imagem.tipoImagem == "imagem3") {
 			const pictureImage = document.querySelector(".picture__image3");
 			const img = document.createElement("img");
-			img.src = imagem.url + "?" + new Date().getTime();
+			img.src = imagem.url + "?v=" + new Date().getTime();
 			img.classList.add("picture__img");
 
 			pictureImage.innerHTML = "";
@@ -320,7 +320,7 @@ function carregarImages(dados) {
 		if (imagem.tipoImagem == "imagem4") {
 			const pictureImage = document.querySelector(".picture__image4");
 			const img = document.createElement("img");
-			img.src = imagem.url + "?" + new Date().getTime();
+			img.src = imagem.url + "?v=" + new Date().getTime();
 			img.classList.add("picture__img");
 
 			pictureImage.innerHTML = "";

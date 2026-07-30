@@ -112,7 +112,7 @@ function htmlMostraServicos(servicos) {
 		
 		if (servico.img != null) {
 			const img = document.createElement("img");
-			img.src = servico.img.url + "?" + new Date().getTime();
+			img.src = servico.img.url + "?v=" + new Date().getTime();
 			img.classList.add("picture__img");
 
 			pictureImage.innerHTML = "";

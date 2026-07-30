@@ -106,7 +106,7 @@ function htmlMostraFuncionarios(funcionarios) {
 		listFuncionarios.append(
 			'<li class="list-group-item btn-funcionario list-group-item-action d-flex justify-content-between" aria-current="true" id="'+funcionario.id_funcionario+'">' + //active usar como class para ativar campo
 			'					<div class="d-flex justify-content-start align-items-center"><img' +
-			'							src="'+urlImagemFuncionario + "?" + new Date().getTime()+'"' +
+			'							src="'+urlImagemFuncionario + "?v=" + new Date().getTime()+'"' +
 			'							class="figure-img img-fluid rounded img-thumbnail me-2" alt="..." style="max-width: 20%;">' +
 			'						<strong>'+ funcionario.nome +'</strong>' +
 			'					</div>' +

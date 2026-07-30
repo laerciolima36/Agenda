@@ -30,7 +30,7 @@ function exibirSection1() {
 
 	for (var imagem of imagens) {
 		if (imagem.islogo == true) {
-			logo = imagem.url + "?" + new Date().getTime();
+			logo = imagem.url + "?v=" + new Date().getTime();
 		}
 	}
 	
@@ -146,7 +146,7 @@ function exibirSection3() {
 
 		if (imagem.islogo != true) {
 			linha.append('<div class="col">' +
-				'<img src="' + imagem.url + "?" + new Date().getTime() + '" class="img-thumbnail" alt="">' +
+				'<img src="' + imagem.url + "?v=" + new Date().getTime() + '" class="img-thumbnail" alt="">' +
 				'</div>');
 			add++;
 		}

@@ -95,7 +95,7 @@ function htmlMostraFuncionarios(funcionarios) {
 
 		if (funcionario.img != null) {
 			const img = document.createElement("img");
-			img.src = funcionario.img.url + "?" + new Date().getTime();
+			img.src = funcionario.img.url + "?v=" + new Date().getTime();
 			img.classList.add("picture__img");
 
 			pictureImage.innerHTML = "";

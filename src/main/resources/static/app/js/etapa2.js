@@ -90,7 +90,7 @@ function exibirsection2(FuncionarioSelecionado) {
 		listServicos.append(
 			'<li class="list-group-item btn-servico list-group-item-action d-flex justify-content-between" aria-current="true" id="' + servico.id_servico + '">' +
 			'<div class="d-flex justify-content-start"><img' +
-			'		src="' + urlImagemServico + "?" + new Date().getTime() + '"' +
+			'		src="' + urlImagemServico + "?v=" + new Date().getTime() + '"' +
 			'		class="figure-img img-fluid rounded img-thumbnail me-2" alt="..." style="max-width: 20%;">' +
 			'	<div class="text-start">' +
 			'	<strong>' + servico.nome + '</strong><br>' +
