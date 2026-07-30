@@ -10,7 +10,6 @@ import com.lesistemas.imagens.InterfaceImagem;
 
 import lombok.AllArgsConstructor;
 
-import software.amazon.awssdk.awscore.AwsRequestOverrideConfiguration;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
@@ -27,18 +26,12 @@ public class S3CloudStorageProvider implements CloudStorageProvider{
 	
 	@Override
 	public URL generatePresignedUploadUrl(InterfaceImagem imagem) {
-		
-		var builder = AwsRequestOverrideConfiguration.builder();
-		
-		builder.putRawQueryParameter("x-amz-acl", "public-read");
-		
+
 		PutObjectRequest objectRequest = PutObjectRequest.builder()
 			.bucket(storageProperties.getS3().getBucket())
 			.key(imagem.getPath())
 			.contentType(imagem.getContentType())
 			.contentLength(imagem.getContentLength())
-			.acl("public-read")
-			.overrideConfiguration(builder.build())
 			.build();
 		
 		PutObjectPresignRequest presignRequest = PutObjectPresignRequest.builder()

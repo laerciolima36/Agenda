@@ -27,5 +27,7 @@ public class StorageProperties {
 		private String bucket;
 		@NotBlank
 		private String region;
+		@NotBlank
+		private String endpoint;
 	}
 }
