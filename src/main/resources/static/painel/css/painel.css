@@ -1,0 +1,391 @@
+/* ==========================================================================
+   Agenda Aí — painel administrativo
+   Reskin visual (paleta, tipografia, componentes, responsividade).
+   Segue a mesma linguagem visual da tela de reserva (reservar.css).
+   Não altera estrutura funcional: apenas classes/ids já usados pelo JS.
+   ========================================================================== */
+
+:root {
+	--color-primary: #6d5ef8;
+	--color-primary-dark: #4f3fd6;
+	--color-primary-light: #ede9fe;
+	--color-accent: #f5a524;
+	--color-accent-dark: #d98c0f;
+	--color-success: #16a34a;
+	--color-success-light: #dcfce7;
+	--color-danger: #dc2626;
+	--color-danger-light: #fee2e2;
+	--color-bg: #f3f2fb;
+	--color-surface: #ffffff;
+	--color-text: #1e1b3a;
+	--color-text-muted: #6b7280;
+	--color-border: #e6e4f4;
+	--radius-sm: 8px;
+	--radius-md: 14px;
+	--radius-lg: 20px;
+	--shadow-sm: 0 2px 8px rgba(31, 25, 68, 0.06);
+	--shadow-md: 0 8px 24px rgba(31, 25, 68, 0.10);
+	--shadow-lg: 0 16px 40px rgba(31, 25, 68, 0.16);
+	--font-heading: "Poppins", "Segoe UI", sans-serif;
+	--font-body: "Inter", "Segoe UI", sans-serif;
+}
+
+html, body {
+	background: var(--color-bg);
+	font-family: var(--font-body);
+	color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6, .card-title, strong {
+	font-family: var(--font-heading);
+}
+
+/* Loading overlay: precisa ficar fixo e acima de tudo. */
+#cloading {
+	position: fixed !important;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+	background: rgba(30, 27, 58, 0.55) !important;
+}
+
+#loading {
+	border-top-color: var(--color-primary) !important;
+}
+
+/* ---------- Navbar / menu ---------- */
+
+.navbar.bg-dark {
+	background: linear-gradient(135deg, #201a3d 0%, #150f2c 100%) !important;
+	box-shadow: var(--shadow-md);
+}
+
+.offcanvas.text-bg-dark {
+	background: linear-gradient(180deg, #201a3d 0%, #150f2c 100%) !important;
+}
+
+.offcanvas .nav-link {
+	border-radius: var(--radius-sm);
+	padding: 0.65rem 0.9rem !important;
+	margin-bottom: 0.15rem;
+	transition: background 0.15s ease, padding-left 0.15s ease;
+}
+
+.offcanvas .nav-link:hover {
+	background: rgba(255, 255, 255, 0.08);
+	padding-left: 1.1rem !important;
+}
+
+.offcanvas .nav-link i {
+	width: 1.4rem;
+	color: var(--color-accent);
+	margin-right: 0.4rem;
+}
+
+.navbar-text {
+	color: rgba(255, 255, 255, 0.75) !important;
+	font-size: 0.85rem;
+}
+
+/* ---------- Cards genéricos ---------- */
+
+.main .card,
+.reservas .card {
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-sm);
+	margin-bottom: 1rem;
+}
+
+.main .card .card {
+	box-shadow: none;
+	background: var(--color-bg);
+}
+
+.main .card-header {
+	background: var(--color-primary-light);
+	color: var(--color-primary-dark);
+	font-weight: 600;
+	border: none;
+	border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+	padding: 0.9rem 1.25rem;
+}
+
+.main .card-body {
+	padding: 1.25rem;
+}
+
+.main .card-title {
+	color: var(--color-text);
+	font-weight: 600;
+}
+
+/* ---------- Formulários ---------- */
+
+.form-label {
+	font-weight: 500;
+	color: var(--color-text-muted);
+	font-size: 0.85rem;
+}
+
+.form-label i {
+	color: var(--color-primary);
+	margin-right: 0.25rem;
+}
+
+.form-control {
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+}
+
+.form-control:focus {
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+/* ---------- Botões ---------- */
+
+.btn {
+	border-radius: var(--radius-sm);
+	font-weight: 500;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:active {
+	transform: translateY(1px);
+}
+
+.btn-primary {
+	background: var(--color-primary) !important;
+	border-color: var(--color-primary) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+	background: var(--color-primary-dark) !important;
+	border-color: var(--color-primary-dark) !important;
+	box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+	background: var(--color-surface) !important;
+	border-color: var(--color-border) !important;
+	color: var(--color-text-muted) !important;
+}
+
+.btn-secondary:hover {
+	background: var(--color-bg) !important;
+	color: var(--color-text) !important;
+}
+
+.btn-danger,
+.btn-success {
+	box-shadow: var(--shadow-sm);
+}
+
+.btn-light {
+	background: rgba(255, 255, 255, 0.9) !important;
+	border: none !important;
+	color: var(--color-primary-dark) !important;
+	font-weight: 700;
+}
+
+.btn-light:hover {
+	background: #fff !important;
+}
+
+/* ---------- Listas (funcionários, serviços, horários) ---------- */
+
+.list-group-flush {
+	margin: 0 -1.25rem;
+}
+
+.list-group-item {
+	border-color: var(--color-border) !important;
+	padding: 1rem 1.25rem;
+	transition: background 0.15s ease;
+}
+
+.list-group-item:hover {
+	background: var(--color-bg);
+}
+
+.listfuncionario > div.bg-dark {
+	display: none;
+}
+
+/* ---------- Upload de imagens (logo/empresa/funcionário/serviço) ---------- */
+
+.picture,
+.pictureFuncionario,
+.pictureServico {
+	background: var(--color-bg) !important;
+	border: 2px dashed var(--color-border) !important;
+	border-radius: var(--radius-md);
+	color: var(--color-text-muted) !important;
+}
+
+.picture:hover,
+.pictureFuncionario:hover,
+.pictureServico:hover {
+	background: var(--color-primary-light) !important;
+	border-color: var(--color-primary) !important;
+	color: var(--color-primary-dark) !important;
+}
+
+.picture:active,
+.picture:focus {
+	border-color: var(--color-primary) !important;
+	color: var(--color-primary-dark) !important;
+	background: var(--color-primary-light) !important;
+	box-shadow: 0 0 0 3px var(--color-primary-light) !important;
+}
+
+.picture__img,
+.pictureimgfuncionario img,
+.pictureimgservico img {
+	border-radius: var(--radius-sm);
+}
+
+.pictureFuncionario {
+	aspect-ratio: 1 / 1 !important;
+	max-width: 45% !important;
+	margin: 0 auto;
+}
+
+.pictureServico {
+	border-radius: var(--radius-md) !important;
+}
+
+/* ---------- Modais ---------- */
+
+.modal-content {
+	border: none;
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-lg);
+	overflow: hidden;
+}
+
+.modal-header {
+	background: var(--color-primary-light);
+	border: none;
+	padding: 1rem 1.5rem;
+}
+
+.modal-title {
+	color: var(--color-primary-dark);
+	font-weight: 600;
+}
+
+.modal-body {
+	padding: 1.5rem;
+}
+
+.modal-footer {
+	border: none;
+	padding: 1rem 1.5rem 1.5rem;
+}
+
+/* ---------- Dashboard ---------- */
+
+.pagination {
+	gap: 0.4rem;
+}
+
+.pagination .page-item .page-link {
+	border: 1px solid var(--color-border);
+	border-radius: 999px !important;
+	color: var(--color-text-muted);
+	font-weight: 500;
+	padding: 0.45rem 1.1rem;
+}
+
+.pagination .page-item.active .page-link {
+	background: var(--color-primary) !important;
+	border-color: var(--color-primary) !important;
+	color: #fff;
+	box-shadow: var(--shadow-sm);
+}
+
+#dataAtual {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 1.05rem;
+	color: var(--color-text);
+}
+
+#nServicos {
+	color: var(--color-primary);
+	font-weight: 700;
+	margin: 0 0.25rem;
+}
+
+.form-switch .form-check-input:checked {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+}
+
+/* Cards de reserva: troca o preenchimento sólido do Bootstrap por um
+   destaque sutil na borda esquerda, mantendo a cor como indicador de status. */
+.reservas .card.text-bg-light {
+	background: var(--color-surface) !important;
+	color: var(--color-text) !important;
+	border-left: 4px solid var(--color-primary);
+}
+
+.reservas .card.text-bg-success {
+	background: var(--color-success-light) !important;
+	color: var(--color-text) !important;
+	border-left: 4px solid var(--color-success);
+}
+
+.reservas .card.text-bg-danger {
+	background: var(--color-danger-light) !important;
+	color: var(--color-text) !important;
+	border-left: 4px solid var(--color-danger);
+}
+
+.reservas .card-header {
+	background: transparent !important;
+	color: var(--color-text-muted) !important;
+	font-weight: 600;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+.reservas .card-footer {
+	background: transparent !important;
+	border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+	color: var(--color-text-muted);
+	font-size: 0.85rem;
+}
+
+.reservas .btn-cancelar,
+.reservas .btn-finalizar {
+	border-radius: 999px !important;
+	font-weight: 600;
+}
+
+/* ---------- Toast ---------- */
+
+.toast {
+	border: none;
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-lg);
+}
+
+.toast.text-bg-success {
+	background: var(--color-success) !important;
+}
+
+/* ---------- Responsivo ---------- */
+
+@media (max-width: 480px) {
+	.main .card-body,
+	.modal-body {
+		padding: 1rem;
+	}
+
+	.list-group-flush {
+		margin: 0 -1rem;
+	}
+}
