@@ -9,6 +9,10 @@
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css" />
 	<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}" type="text/css" />
     <link rel="stylesheet" href="/painel/css/loader.css" type="text/css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap">
+	<link rel="stylesheet" href="../static/app/css/reservar.css" th:href="@{css/reservar.css}" />
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<script type="module" src="../static/js/empresa_from_cliente.js" th:src="@{js/empresa_from_cliente.js}"></script>
 <!--	<script type="text/javascript" src="/webjars/jquery/dist/jquery.min.js"></script>-->
@@ -24,6 +28,7 @@
 <div id="cloading">
 	<div id="loading"></div>
 </div>
+<div class="app-shell">
 	<section class="section-1"></section>
 
 	<section class="section-2"></section>
@@ -31,6 +36,7 @@
 	<section class="section-3"></section>
 
 	<section class="resumoReserva"></section>
+</div>
 
 	<script th:inline="javascript">
 		let empresa = /*[[${empresa}]]*/ "Teste";

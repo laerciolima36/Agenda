@@ -115,14 +115,14 @@ function exibirSection3() {
 		'</div>' +
 
 		'<div class="row-flex justify-content-center">' +
-		'<a style="text-decoration: none; color: white;" href="https://www.instagram.com/' + empresa.redesocial + '" target="_blank"<i class="fab fa-instagram fa-2x p-2"></i>' +
-		'<a style="text-decoration: none; color: white;" href="https://api.whatsapp.com/send?phone=55' + tratarWhatsapp(empresa.contato) + '"<i class="fab fa-whatsapp fa-2x p-2"></i></a>' +
+		'<a class="social-link" href="https://www.instagram.com/' + empresa.redesocial + '" target="_blank"><i class="fab fa-instagram fa-2x p-2"></i></a>' +
+		'<a class="social-link" href="https://api.whatsapp.com/send?phone=55' + tratarWhatsapp(empresa.contato) + '" target="_blank"><i class="fab fa-whatsapp fa-2x p-2"></i></a>' +
 		'</div>' +
 
 		'</div>' +
 		'</div>' +
 
-		'<div class="text-center" style="background-color: #333; padding: 20px;">' +
+		'<div class="footer-copyright">' +
 		'	&copy 2023 Copyright: <a href="#">Agenda Aí</a>' +
 		'</div>' +
 		'</footer >');
