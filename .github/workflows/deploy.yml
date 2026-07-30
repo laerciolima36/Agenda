@@ -27,4 +27,4 @@ jobs:
           name: app-jar
       - run: |
           sudo cp *.jar /var/app/app.jar
-          sudo systemctl restart agenda
+          sudo systemctl restart agenda-ai
