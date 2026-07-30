@@ -27,29 +27,40 @@ function exibirSection1() {
 
 	let imagens = empresa.imagem;
 	logo;
+	let banner = "";
 
 	for (var imagem of imagens) {
 		if (imagem.islogo == true) {
 			logo = imagem.url + "?v=" + new Date().getTime();
+		} else if (banner == "") {
+			banner = imagem.url + "?v=" + new Date().getTime();
 		}
 	}
-	
+
+	let bannerClass = banner == "" ? "hero-banner hero-banner--fallback" : "hero-banner";
+	let bannerStyle = banner == "" ? "" : ' style="background-image: url(\'' + banner + '\');"';
+
 	section1.append(
 
-		'<div class="container-fluid bg-dark text-light text-center pt-4">' +
+		'<div class="hero">' +
 
-		'		<figure class="figure p-4">' +
-		'			<img src="' + logo + '" ' +
-		'				class="figure-img img-fluid rounded img-thumbnail" alt="..."  style="max-width: 70%;">' +
-		'			<figcaption class="figure-caption"><span>'+empresa.nome+'</span></figcaption>' +
-		'		</figure>' +
+		'	<div class="' + bannerClass + '"' + bannerStyle + '></div>' +
 
-		'			<div class="row pb-4">' +
-		'				<div class="col">' +
-		'				<button type="button" class="btn btn-warning btn-agendar">Agendar Meu Serviço <i class="fa-solid fa-calendar-check"></i></button>' +
-		'				</div>' +
-		'			</div>' +
-		'		</div>');
+		'	<div class="hero-avatar-wrap">' +
+		'		<img src="' + logo + '" class="hero-avatar" alt="' + empresa.nome + '">' +
+		'	</div>' +
+
+		'	<div class="hero-info text-center">' +
+		'		<h1 class="hero-name">' + empresa.nome + '</h1>' +
+		'		<p class="hero-address"><i class="fa-solid fa-location-dot"></i> ' +
+		empresa.endereco.cidade + "/" + empresa.endereco.uf +
+		'		</p>' +
+		'	</div>' +
+
+		'	<div class="hero-cta text-center">' +
+		'		<button type="button" class="btn btn-agendar">Agendar Meu Serviço <i class="fa-solid fa-calendar-check"></i></button>' +
+		'	</div>' +
+		'</div>');
 
 	$('.btn-agendar').on("click", function() {
 		carregarEtapa1();
@@ -71,12 +82,13 @@ function htmlMostraServicos(servicos) {
 
 	section2.append(
 
-		'<div class="container-fluid bg-dark text-light justify-content-center">' +
-		'<br>' +
-		'<p class="fs-6">Nossos Serviços:</p>' +
-		'<div class="row-auto text-center listServicos">' +
-		'</div>' +
-		'<br>' +
+		'<div class="servicos-home">' +
+		'	<div class="servicos-home-header text-center">' +
+		'		<span class="servicos-home-eyebrow">Nossos Serviços</span>' +
+		'		<h2 class="servicos-home-title">O que temos pra você</h2>' +
+		'	</div>' +
+		'	<div class="listServicos">' +
+		'	</div>' +
 		'</div>'
 	);
 
@@ -84,7 +96,17 @@ function htmlMostraServicos(servicos) {
 	listServicos.empty();
 
 	for (var servico of servicos) {
-		listServicos.append('<span><i class="fa-solid fa-check pe-1"></i>' + servico.nome + '</span><br>');
+		let urlImagemServico = servico.img == null ? "/imagens/avatar.jpeg" : servico.img.url + "?v=" + new Date().getTime();
+
+		listServicos.append(
+			'<div class="service-card">' +
+			'	<img src="' + urlImagemServico + '" class="service-card-img" alt="' + servico.nome + '">' +
+			'	<div class="service-card-body">' +
+			'		<span class="service-card-name">' + servico.nome + '</span>' +
+			'		<span class="service-card-price">R$ ' + servico.preco + '</span>' +
+			'	</div>' +
+			'</div>'
+		);
 	}
 }
 
